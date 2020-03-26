@@ -68,7 +68,7 @@ for i, member in enumerate(members):
 
 print("=" * 40)
 
-from abc import *
+from abc import ABCMeta, abstractmethod
 
 class Person(metaclass=ABCMeta):
     @abstractmethod
