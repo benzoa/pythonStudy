@@ -36,7 +36,7 @@ f.seek(0)
 while True :
     line = f.readline()
     if len(line) == 0:
-        break;
+        break
 
     print(line, end="")
 
