@@ -13,37 +13,89 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="push_btn1">
+  <widget class="QPushButton" name="text_brow__to_plain_text">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>121</width>
-     <height>31</height>
+     <x>170</x>
+     <y>120</y>
+     <width>91</width>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton1</string>
+    <string>Print</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="push_btn2">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>50</y>
-     <width>121</width>
-     <height>31</height>
+     <x>20</x>
+     <y>480</y>
+     <width>91</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton2</string>
+    <string>This is Label</string>
    </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>250</y>
+     <width>120</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>CheckGroupBox</string>
+   </property>
+   <widget class="QCheckBox" name="group_check_box1_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>GroupBox1</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="group_check_box2_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>GroupBox2</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="group_check_box3_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>GroupBox3</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>100</y>
+     <y>120</y>
      <width>121</width>
      <height>91</height>
     </rect>
@@ -60,7 +112,7 @@
    <property name="checkable">
     <bool>false</bool>
    </property>
-   <widget class="QRadioButton" name="radio_btn1">
+   <widget class="QRadioButton" name="radio_btn1_2">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -73,7 +125,7 @@
      <string>RadioButton1</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radio_btn2">
+   <widget class="QRadioButton" name="radio_btn2_2">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -86,7 +138,7 @@
      <string>RadioButton2</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radio_btn3">
+   <widget class="QRadioButton" name="radio_btn3_2">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -100,63 +152,235 @@
     </property>
    </widget>
   </widget>
-  <widget class="QGroupBox" name="groupBox_2">
+  <widget class="Line" name="line_7">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>210</y>
-     <width>120</width>
-     <height>91</height>
+     <y>450</y>
+     <width>131</width>
+     <height>16</height>
     </rect>
    </property>
-   <property name="title">
-    <string>CheckGroupBox</string>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
    </property>
-   <widget class="QCheckBox" name="group_check_box1">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>91</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>GroupBox1</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="group_check_box2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>91</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>GroupBox2</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="group_check_box3">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>91</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>GroupBox3</string>
-    </property>
-   </widget>
+  </widget>
+  <widget class="QTextBrowser" name="text_browers">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>10</y>
+     <width>191</width>
+     <height>71</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="text_brow__clear">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>120</y>
+     <width>91</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Clear</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="text_brow__set_plain_text">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>90</y>
+     <width>91</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>SetText</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="push_btn1">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton1</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="le_label">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>190</y>
+     <width>181</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>This is Label</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="push_btn_change">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>500</y>
+     <width>91</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Change</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line_3">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>10</y>
+     <width>20</width>
+     <height>581</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="le">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>220</y>
+     <width>181</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="placeholderText">
+    <string>LineEdit Placeholder</string>
+   </property>
+   <property name="clearButtonEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="push_btn_print">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>530</y>
+     <width>91</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Print</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>10</y>
+     <width>20</width>
+     <height>581</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="text_brow__append">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>90</y>
+     <width>91</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Append</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="le_btn">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>250</y>
+     <width>181</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Print Label Text</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line_6">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>350</y>
+     <width>131</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="push_btn2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton2</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>90</y>
+     <width>131</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_8">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>160</y>
+     <width>221</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
   </widget>
   <widget class="QCheckBox" name="check_box1">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>310</y>
+     <y>380</y>
      <width>91</width>
      <height>16</height>
     </rect>
@@ -165,11 +389,24 @@
     <string>CheckBox1</string>
    </property>
   </widget>
+  <widget class="Line" name="line_4">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>290</y>
+     <width>221</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
   <widget class="QCheckBox" name="check_box2">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>330</y>
+     <y>400</y>
      <width>91</width>
      <height>16</height>
     </rect>
@@ -178,11 +415,24 @@
     <string>CheckBox2</string>
    </property>
   </widget>
+  <widget class="Line" name="line_5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>220</y>
+     <width>131</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
   <widget class="QCheckBox" name="check_box3">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>350</y>
+     <y>420</y>
      <width>91</width>
      <height>16</height>
     </rect>
