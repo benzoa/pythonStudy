@@ -18,6 +18,10 @@ class WindowClass(QMainWindow, form_class):
         self.date_time_set_date_time.clicked.connect(self.set_date_and_time)
         self.date_time_set_date.clicked.connect(self.set_date)
         self.date_time_set_time.clicked.connect(self.set_time)
+        self.date_time_change_format.clicked.connect(self.change_format)
+        self.date_time_print_range.clicked.connect(self.print_range)
+        self.date_time_plus_10day.clicked.connect(self.plus_10days)
+        self.date_time_minus_10days.clicked.connect(self.minus_10days)
 
     def date_time_info_disp(self):
         self.disp_date_time = self.date_time_edit.dateTime()
@@ -46,6 +50,24 @@ class WindowClass(QMainWindow, form_class):
         self.le_time = self.date_time_time_le.text()
         self.le_time_var = QTime.fromString(self.le_time, "AP hh:mm:ss")
         self.date_time_edit.setTime(self.le_time_var)
+
+    def change_format(self):
+        self.new_format = self.date_time_disp_format_le.text()
+        self.date_time_edit.setDisplayFormat(self.new_format)
+
+    def print_range(self):
+        print("maximumDateTime: {}".format(self.date_time_edit.maximumDateTime()))
+        print("minimumDateTime: {}".format(self.date_time_edit.minimumDateTime()))
+
+    def plus_10days(self):
+        self.cur_maximum_date_time = self.date_time_edit.maximumDateTime()
+        self.cur_maximum_date_time = self.cur_maximum_date_time.addDays(10)
+        self.date_time_edit.setMaximumDateTime(self.cur_maximum_date_time)
+
+    def minus_10days(self):
+        self.cur_minimum_date_time = self.date_time_edit.minimumDateTime()
+        self.cur_minimum_date_time = self.cur_minimum_date_time.addDays(-10)
+        self.date_time_edit.setMinimumDateTime(self.cur_minimum_date_time)
 
 
 if __name__ == "__main__" :

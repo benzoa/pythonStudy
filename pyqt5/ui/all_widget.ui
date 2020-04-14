@@ -1380,6 +1380,84 @@ supports Plain Text</string>
     <string/>
    </property>
   </widget>
+  <widget class="QPushButton" name="date_time_minus_10days">
+   <property name="geometry">
+    <rect>
+     <x>1018</x>
+     <y>70</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>- 10 Days</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="date_time_disp_format_le">
+   <property name="geometry">
+    <rect>
+     <x>888</x>
+     <y>10</y>
+     <width>201</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>yy-MMMM-dddd h:m:s</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="date_time_change_format">
+   <property name="geometry">
+    <rect>
+     <x>888</x>
+     <y>40</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Change Format</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="date_time_print_range">
+   <property name="geometry">
+    <rect>
+     <x>888</x>
+     <y>70</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Print Range</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line_18">
+   <property name="geometry">
+    <rect>
+     <x>878</x>
+     <y>100</y>
+     <width>221</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="date_time_plus_10day">
+   <property name="geometry">
+    <rect>
+     <x>1018</x>
+     <y>40</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>+ 10 Days</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
