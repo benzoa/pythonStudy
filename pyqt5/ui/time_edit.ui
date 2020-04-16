@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1106</width>
+    <height>605</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="Line" name="line_14">
+   <property name="geometry">
+    <rect>
+     <x>860</x>
+     <y>10</y>
+     <width>20</width>
+     <height>581</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="time_disp_format_le">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>470</y>
+     <width>201</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>h:m:s</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="time_change_format">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>500</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Change Format</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="time_le">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>430</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>07:52:10</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="time_lb">
+   <property name="geometry">
+    <rect>
+     <x>932</x>
+     <y>381</y>
+     <width>81</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="Line" name="line_19">
+   <property name="geometry">
+    <rect>
+     <x>880</x>
+     <y>330</y>
+     <width>221</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="time_set_time">
+   <property name="geometry">
+    <rect>
+     <x>1040</x>
+     <y>430</y>
+     <width>51</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Time</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>891</x>
+     <y>383</y>
+     <width>41</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Time :</string>
+   </property>
+  </widget>
+  <widget class="QTimeEdit" name="time_edit">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>350</y>
+     <width>201</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="displayFormat">
+    <string>AP h:mm:ss</string>
+   </property>
+   <property name="calendarPopup">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="time_info">
+   <property name="geometry">
+    <rect>
+     <x>1020</x>
+     <y>380</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Display Info</string>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1458,6 +1458,275 @@ supports Plain Text</string>
     <string>+ 10 Days</string>
    </property>
   </widget>
+  <widget class="QLineEdit" name="time_disp_format_le">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>470</y>
+     <width>201</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>h:m:s</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="time_change_format">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>500</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Change Format</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="date_change_format">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>270</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Change Format</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>891</x>
+     <y>156</y>
+     <width>41</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Date :</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="time_le">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>430</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>07:52:10</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="date_lb">
+   <property name="geometry">
+    <rect>
+     <x>930</x>
+     <y>155</y>
+     <width>81</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="time_lb">
+   <property name="geometry">
+    <rect>
+     <x>932</x>
+     <y>381</y>
+     <width>81</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="date_date_le">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>200</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>2019-12-07</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="date_info">
+   <property name="geometry">
+    <rect>
+     <x>1017</x>
+     <y>154</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Display Info</string>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="Line" name="line_19">
+   <property name="geometry">
+    <rect>
+     <x>880</x>
+     <y>330</y>
+     <width>221</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="date_edit_min">
+   <property name="geometry">
+    <rect>
+     <x>1020</x>
+     <y>300</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Edit Min</string>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="date_edit">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>120</y>
+     <width>201</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="calendarPopup">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="time_set_time">
+   <property name="geometry">
+    <rect>
+     <x>1040</x>
+     <y>430</y>
+     <width>51</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Time</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="date_disp_format_le">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>240</y>
+     <width>201</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>yy-MMMM-dddd</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="date_print_range">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>300</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Print Range</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="date_edit_max">
+   <property name="geometry">
+    <rect>
+     <x>1020</x>
+     <y>270</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Edit Max</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>891</x>
+     <y>383</y>
+     <width>41</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Time :</string>
+   </property>
+  </widget>
+  <widget class="QTimeEdit" name="time_edit">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>350</y>
+     <width>201</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="displayFormat">
+    <string>AP h:mm:ss</string>
+   </property>
+   <property name="calendarPopup">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="date_set_date">
+   <property name="geometry">
+    <rect>
+     <x>1040</x>
+     <y>200</y>
+     <width>51</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Date</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="time_info">
+   <property name="geometry">
+    <rect>
+     <x>1020</x>
+     <y>380</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Display Info</string>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
