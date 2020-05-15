@@ -26,6 +26,11 @@ class WindowClass(QMainWindow, form_class):
         # menuBar
         menubar = self.menuBar()
         menubar.setNativeMenuBar(False)
+
+        appAction = QAction(QIcon('resources/hello.png'), 'hello', self)
+        appAction.setDisabled(True)
+        menubar.addAction(appAction)
+
         filemenu = menubar.addMenu('&File')
 
         newFile = QAction('New File', self)
