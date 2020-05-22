@@ -1,5 +1,6 @@
 __pycache__/
 dist/
 *.bz2
+*.gz
 *.pem
 .vscode
