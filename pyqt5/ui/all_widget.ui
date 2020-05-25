@@ -1793,9 +1793,9 @@ supports Plain Text</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>590</y>
+     <y>586</y>
      <width>1081</width>
-     <height>16</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="orientation">
@@ -2029,6 +2029,35 @@ supports Plain Text</string>
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>880</x>
+     <y>810</y>
+     <width>211</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <item>
+     <widget class="QLineEdit" name="line_insertItem_2">
+      <property name="text">
+       <string>Insert Item</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QSpinBox" name="spin_insertRow_2"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_insertItem_2">
+      <property name="text">
+       <string>Insert</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
   <widget class="QListWidget" name="listWidget">
    <property name="geometry">
     <rect>
@@ -2037,6 +2066,12 @@ supports Plain Text</string>
      <width>211</width>
      <height>141</height>
     </rect>
+   </property>
+   <property name="alternatingRowColors">
+    <bool>true</bool>
+   </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::MultiSelection</enum>
    </property>
    <item>
     <property name="text">
@@ -2063,47 +2098,18 @@ supports Plain Text</string>
      <height>31</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QHBoxLayout" name="horizontalLayout_6">
     <item>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="line_addItem_2">
       <property name="text">
        <string>Add Item</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="btn_addItem_2">
       <property name="text">
        <string>Add</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>880</x>
-     <y>810</y>
-     <width>211</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
-    <item>
-     <widget class="QLineEdit" name="lineEdit_2">
-      <property name="text">
-       <string>Insert Item</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QSpinBox" name="spinBox"/>
-    </item>
-    <item>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="text">
-       <string>PushButton</string>
       </property>
      </widget>
     </item>
@@ -2118,30 +2124,30 @@ supports Plain Text</string>
      <height>80</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout">
+   <layout class="QGridLayout" name="gridLayout_3">
     <item row="0" column="0">
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="btn_printItem_2">
       <property name="text">
        <string>Print</string>
       </property>
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="btn_printMultiItems_2">
       <property name="text">
        <string>Print_Multi</string>
       </property>
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QPushButton" name="pushButton_5">
+     <widget class="QPushButton" name="btn_removeItem_2">
       <property name="text">
        <string>Remove</string>
       </property>
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QPushButton" name="pushButton_6">
+     <widget class="QPushButton" name="btn_clearItem_2">
       <property name="text">
        <string>Clear</string>
       </property>
