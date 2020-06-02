@@ -33,12 +33,11 @@ def run_server(host="127.0.0.1", port=55000):
         print("Server Start")
 
         while True:
+            # Create a thread when clients connect
             server_sock.listen()
             client_sock, addr = server_sock.accept()
             t = Thread(target=threaded, args=(client_sock, addr))
             t.start()
-
-        #server_sock.close()
 
 
 if __name__ == '__main__':
