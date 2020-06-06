@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1106</width>
-    <height>605</height>
+    <width>143</width>
+    <height>198</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,6 +25,9 @@
    <property name="text">
     <string>PushButton1</string>
    </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QPushButton" name="push_btn2">
    <property name="geometry">
@@ -35,8 +38,20 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="text">
     <string>PushButton2</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="default">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QGroupBox" name="groupBox">
@@ -71,6 +86,9 @@
     </property>
     <property name="text">
      <string>RadioButton1</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QRadioButton" name="radio_btn2">

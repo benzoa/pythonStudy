@@ -19,10 +19,25 @@ class WindowClass(QMainWindow, form_class):
         self.radio_btn3.clicked.connect(self.radio_group_box_func)
 
     def push_btn1_func(self):
-        print("btn1 clicked")
+        if self.push_btn1.isChecked():
+            self.push_btn1.setChecked(False)
+        else:
+            self.push_btn1.setChecked(True)
+
+        self.push_btn1.toggle()
+
 
     def push_btn2_func(self):
-        print("btn2 clicked")
+        if self.push_btn2.isChecked():
+            self.push_btn2.setStyleSheet("color: blue;"
+                                     "border-style: solid;"
+                                     "border-width: 2px;"
+                                     "border-color: #FA8072;"
+                                     "background-color: #7FFFD4;"
+                                     "border-radius: 3px")
+        else:
+            self.push_btn2.setStyleSheet("")
+
 
     def radio_group_box_func(self):
         if self.radio_btn1.isChecked(): print("radio1 checked")

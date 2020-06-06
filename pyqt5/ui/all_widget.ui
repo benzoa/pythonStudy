@@ -124,6 +124,9 @@
     <property name="text">
      <string>RadioButton1</string>
     </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QRadioButton" name="radio_btn2_2">
     <property name="geometry">
@@ -212,6 +215,9 @@
    </property>
    <property name="text">
     <string>PushButton1</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLabel" name="le_label">
@@ -348,6 +354,12 @@
    </property>
    <property name="text">
     <string>PushButton2</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="default">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="Line" name="line_2">
