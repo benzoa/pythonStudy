@@ -97,7 +97,7 @@
     </rect>
    </property>
    <property name="title">
-    <string>RadioGroupBox</string>
+    <string>RadioBox Group</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
