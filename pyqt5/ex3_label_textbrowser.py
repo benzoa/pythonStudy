@@ -21,6 +21,18 @@ class WindowClass(QMainWindow, form_class):
 
     def label_change(self):
         self.label.setText("Changed Label")
+        self.label.setStyleSheet("color: blue;" 
+                             "border-style: solid;"
+                             "border-width: 2px;"
+                             "border-color: #FA8072;"
+                             "background-color: #7FFFD4;"
+                             "border-radius: 3px")
+
+        font = self.label.font()
+        font.setFamily('Times New Roman')
+        font.setPointSize(12)
+        font.setBold(True)
+        self.label.setFont(font)
 
     def label_print(self):
         print(self.label.text())
