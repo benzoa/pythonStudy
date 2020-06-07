@@ -9,25 +9,42 @@ class WindowClass(QMainWindow, form_class):
         super().__init__()
         self.setupUi(self)
 
-        # group check box signal
-        self.group_check_box1.stateChanged.connect(self.check_group_box_func)
-        self.group_check_box2.stateChanged.connect(self.check_group_box_func)
-        self.group_check_box3.stateChanged.connect(self.check_group_box_func)
+        #  check box group
+        self.group_check_box1.stateChanged.connect(self.check_group_box_non_exclusive)
+        self.group_check_box2.stateChanged.connect(self.check_group_box_exclusive)
+        self.group_check_box3.stateChanged.connect(self.check_group_box_exclusive)
 
-        # group check box signal
+        # check box
         self.check_box1.stateChanged.connect(self.check_box_func)
         self.check_box2.stateChanged.connect(self.check_box_func)
-        self.check_box3.stateChanged.connect(self.check_box_func)
-    
-    def check_group_box_func(self):
-        if self.group_check_box1.isChecked(): print("group checkbox1 checked")
-        if self.group_check_box2.isChecked(): print("group checkbox2 checked")
-        if self.group_check_box3.isChecked(): print("group checkbox3 checked")
+        self.check_box3.stateChanged.connect(self.check_box_tri_state)
+
+    def check_group_box_non_exclusive(self):
+        if self.group_check_box1.isChecked():
+            print("group Non-exclusive checked")
+        else:
+            print("group Non-exclusive unchecked")
+
+    def check_group_box_exclusive(self):
+        if self.group_check_box2.isChecked():
+            print("group checkbox2 checked")
+        elif self.group_check_box3.isChecked():
+            print("group checkbox3 checked")
 
     def check_box_func(self):
-        if self.check_box1.isChecked(): print("checkbox1 checked")
-        if self.check_box2.isChecked(): print("checkbox2 checked")
-        if self.check_box3.isChecked(): print("checkbox3 checked")
+        if self.check_box1.isChecked():
+            print("checkbox1 checked")
+        
+        if self.check_box2.isChecked():
+            self.check_box2.setText("Checked")
+        else:
+            self.check_box2.setText("Unchecked")
+
+    def check_box_tri_state(self):
+        if self.check_box3.checkState():
+            print("Enable")
+        else:
+            print("Disable")
 
 
 if __name__ == "__main__" :
