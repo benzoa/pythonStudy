@@ -2,7 +2,11 @@ import win32api
 from win32api import GetSystemMetrics, GetLocalTime, GetSystemTime, GetComputerName, GetUserName
 import win32con
 import win32gui
+from pathlib import Path
+import win32file
+import win32clipboard
 
+# ref : https://github.com/mhammond/pywin32, http://codetorial.net/pywin32/index.html
 
 # Beep
 win32api.Beep(500, 3000)	# frequency(37Hz ~ 32,767kHz), duration
@@ -67,3 +71,48 @@ print(GetComputerName())
 # user name
 print(GetUserName())
 
+# create empty file
+Path('test.txt').touch()
+
+# create dirctory
+Path('new_folder').mkdir()
+
+# copy file
+win32api.CopyFile('test.txt', 'test_copied.txt')
+
+# change file name
+win32api.MoveFile('test_copied.txt', 'test_new.txt')
+
+# move file
+win32api.MoveFile('test_new.txt', './new_folder/test_new.txt')
+
+# delete file
+win32api.DeleteFile('test.txt')
+
+# create directory
+win32file.CreateDirectory('new_folder2', None)
+
+# delete directory
+win32file.RemoveDirectory('new_folder2')
+
+# create directory and then move it
+win32file.CreateDirectory('upper_folder', None)
+win32file.SetCurrentDirectory('upper_folder')
+
+win32file.CreateDirectory('new_folder', None)
+
+# open clipboard
+win32clipboard.OpenClipboard()
+# empty clipboard
+win32clipboard.EmptyClipboard()
+# set text in the clipboard
+win32clipboard.SetClipboardText('Text to Clipboard')
+# close clipboard
+win32clipboard.CloseClipboard()
+
+
+# get data in the clipboard
+win32clipboard.OpenClipboard()
+data = win32clipboard.GetClipboardData()
+win32clipboard.CloseClipboard()
+print(data)
