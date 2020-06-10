@@ -984,7 +984,7 @@ supports Plain Text</string>
   <widget class="QLabel" name="v_val_2">
    <property name="geometry">
     <rect>
-     <x>660</x>
+     <x>680</x>
      <y>40</y>
      <width>41</width>
      <height>16</height>
@@ -997,7 +997,7 @@ supports Plain Text</string>
   <widget class="QPushButton" name="v_slider_range">
    <property name="geometry">
     <rect>
-     <x>660</x>
+     <x>680</x>
      <y>110</y>
      <width>81</width>
      <height>23</height>
@@ -1010,7 +1010,7 @@ supports Plain Text</string>
   <widget class="QLabel" name="h_val">
    <property name="geometry">
     <rect>
-     <x>800</x>
+     <x>820</x>
      <y>40</y>
      <width>41</width>
      <height>16</height>
@@ -1023,7 +1023,7 @@ supports Plain Text</string>
   <widget class="QPushButton" name="h_slider_info">
    <property name="geometry">
     <rect>
-     <x>760</x>
+     <x>780</x>
      <y>80</y>
      <width>81</width>
      <height>23</height>
@@ -1036,7 +1036,7 @@ supports Plain Text</string>
   <widget class="QPushButton" name="v_slider_info">
    <property name="geometry">
     <rect>
-     <x>660</x>
+     <x>680</x>
      <y>80</y>
      <width>81</width>
      <height>23</height>
@@ -1049,7 +1049,7 @@ supports Plain Text</string>
   <widget class="QLabel" name="v_val">
    <property name="geometry">
     <rect>
-     <x>740</x>
+     <x>760</x>
      <y>40</y>
      <width>41</width>
      <height>16</height>
@@ -1062,20 +1062,23 @@ supports Plain Text</string>
   <widget class="QSlider" name="h_slider">
    <property name="geometry">
     <rect>
-     <x>680</x>
+     <x>679</x>
      <y>150</y>
-     <width>160</width>
+     <width>181</width>
      <height>22</height>
     </rect>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
+   <property name="tickPosition">
+    <enum>QSlider::TicksAbove</enum>
+   </property>
   </widget>
   <widget class="QPushButton" name="h_slider_range">
    <property name="geometry">
     <rect>
-     <x>760</x>
+     <x>780</x>
      <y>110</y>
      <width>81</width>
      <height>23</height>
@@ -1088,7 +1091,7 @@ supports Plain Text</string>
   <widget class="QLabel" name="v_real_time">
    <property name="geometry">
     <rect>
-     <x>740</x>
+     <x>760</x>
      <y>20</y>
      <width>41</width>
      <height>16</height>
@@ -1107,14 +1110,23 @@ supports Plain Text</string>
      <height>160</height>
     </rect>
    </property>
+   <property name="singleStep">
+    <number>5</number>
+   </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
+   </property>
+   <property name="tickPosition">
+    <enum>QSlider::TicksAbove</enum>
+   </property>
+   <property name="tickInterval">
+    <number>5</number>
    </property>
   </widget>
   <widget class="QLabel" name="v_real_time_2">
    <property name="geometry">
     <rect>
-     <x>660</x>
+     <x>680</x>
      <y>20</y>
      <width>61</width>
      <height>16</height>
@@ -1127,7 +1139,7 @@ supports Plain Text</string>
   <widget class="QLabel" name="h_real_time">
    <property name="geometry">
     <rect>
-     <x>800</x>
+     <x>820</x>
      <y>20</y>
      <width>41</width>
      <height>16</height>
@@ -1147,7 +1159,7 @@ supports Plain Text</string>
     </rect>
    </property>
    <property name="text">
-    <string>D Range</string>
+    <string>Dial Range</string>
    </property>
   </widget>
   <widget class="QDial" name="dial">
@@ -1158,6 +1170,9 @@ supports Plain Text</string>
      <width>81</width>
      <height>81</height>
     </rect>
+   </property>
+   <property name="notchesVisible">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="dial_info">
@@ -1170,7 +1185,7 @@ supports Plain Text</string>
     </rect>
    </property>
    <property name="text">
-    <string>D Info</string>
+    <string>Dial Info</string>
    </property>
   </widget>
   <widget class="QLabel" name="dial_lb">
