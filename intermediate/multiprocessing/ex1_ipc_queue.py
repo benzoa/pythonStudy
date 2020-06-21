@@ -81,5 +81,3 @@ if __name__ == "__main__":
     
     queue.close()
     queue.join_thread()
-    # p1.join()
-    # p2.join()
