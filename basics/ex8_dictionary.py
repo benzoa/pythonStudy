@@ -70,3 +70,23 @@ fmt = "| {:<7} | {:>5} | {:^+5} |"
 
 for name, val in sorted(records.items()):
     print(fmt.format(name, val, val - avg))
+
+# function mapping
+def add(a, b):
+    return 'add : ' + str(a + b)
+
+def sub(a, b):
+    return 'sub : ' + str(a - b)
+
+def mul(a, b):
+    return 'mul : ' + str(a * b)
+
+def div(a, b):
+    return 'div : ' + str(a /b)
+
+math_func = {'add':add, 'sub':sub, 'mul':mul, 'div':div}
+print(math_func['add'](10, 20))
+
+math_func_idx = {0:add, 1:sub, 2:mul, 3:div}
+for i in range(4):
+    print(math_func_idx[i](10, 20))
