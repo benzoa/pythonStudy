@@ -1,20 +1,38 @@
 import asyncio
+from random import random
 
+_port = 7770
 
-async def start_client(message: str):
+async def run_client(host: str, port: int):
     reader: asyncio.StreamReader
     writer: asyncio.StreamWriter
+    reader, writer = await asyncio.open_connection(host, port)
 
-    reader, writer = await asyncio.open_connection('127.0.0.1', 5577)
-    print('[C]Connected')
-    writer.write(message.encode())
-    await writer.drain()
-    print(f'[C]Send: {message!r}')
+    # show connection info
+    print("[C] connected")
 
-    data = await reader.read(100)
-    print(f'[C]Received: {data.decode()!r}')
+    while True:
+        line = input("[C] enter message: ")
+        if not line:
+            break
 
-    print('[C]Closing...')
+        payload = line.encode()
+        writer.write(payload)
+        await writer.drain()
+        print(f"[C] sent: {len(payload)} bytes.\n")
+
+        data = await reader.read(1024)  # type: bytes
+        print(f"[C] received: {len(data)} bytes")
+        print(f"[C] message: {data.decode()}")
+
+    print("[C] closing connection...")
     writer.close()
     await writer.wait_closed()
 
+
+async def main():
+    await asyncio.wait(run_client("127.0.0.1", _port))
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
