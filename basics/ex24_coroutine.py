@@ -28,7 +28,8 @@ print(co2.send(2))
 print(co2.send(3))
 
 # ------------------------------
-def sum_coroutine():
+
+def sum_coroutine2():
     try:
         total = 0
         while True:
@@ -38,10 +39,36 @@ def sum_coroutine():
         print(e)
         yield total
  
-co3 = sum_coroutine()
+co3 = sum_coroutine2()
 next(co3)
  
 for i in range(20):
     co3.send(i)
 
 print(co3.throw(RuntimeError, 'Break coroutine with exception'))
+
+# ------------------------------
+
+def accumulate():
+    total = 0
+    while True:
+        x = (yield)
+        if x is None:
+            return total
+        total += x
+ 
+def sum_coroutine3():
+    while True:
+        total = yield from accumulate()
+        print(total)
+ 
+co4 = sum_coroutine3()
+next(co4)
+ 
+for i in range(1, 11):
+    co4.send(i)
+co4.send(None)
+ 
+for i in range(1, 101):
+    co4.send(i)
+co4.send(None)
