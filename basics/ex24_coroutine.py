@@ -72,3 +72,29 @@ co4.send(None)
 for i in range(1, 101):
     co4.send(i)
 co4.send(None)
+
+# ------------------------------
+
+def accumulate2():
+    total = 0
+    while True:
+        x = (yield)
+        if x is None:
+            raise StopIteration(total)
+        total += x
+ 
+def sum_coroutine2():
+    while True:
+        total = yield from accumulate2()
+        print(total)
+ 
+co5 = sum_coroutine2()
+next(co5)
+ 
+for i in range(1, 11):
+    co5.send(i)
+co5.send(None)
+ 
+for i in range(1, 101):
+    co5.send(i)
+co5.send(None)
