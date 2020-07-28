@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from datetime import date
 
 
-@dataclass
+@dataclass(frozen=True)
 class User:
     id: int
     name: str
