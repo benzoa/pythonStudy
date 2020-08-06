@@ -1,5 +1,6 @@
 import asyncio
 import time
+from concurrent.futures import ThreadPoolExecutor
 
 async def add(a, b):
     await asyncio.sleep(1.0)
@@ -27,11 +28,21 @@ async def coroutine_3():
     loop.run_in_executor(None, time.sleep, 1)
     print("Resume coroutine 3")
 
-if __name__ == "__main__":
+async def sleep(executor=None):
     loop = asyncio.get_event_loop()
+    await loop.run_in_executor(executor, time.sleep, 1)
 
+async def main():
+    executor = ThreadPoolExecutor(max_workers=100)
+    futures = [asyncio.ensure_future(sleep(executor)) for i in range(100)]
+    await asyncio.gather(*futures)
+
+
+if __name__ == "__main__":
     start = time.time()
+    # loop = asyncio.get_event_loop()
     # Specify scheduling order by asyncio.gather
-    loop.run_until_complete(asyncio.gather(coroutine_1(), coroutine_2(), coroutine_3(), hello(10, 20)))
+    # loop.run_until_complete(asyncio.gather(coroutine_1(), coroutine_2(), coroutine_3(), hello(10, 20)))
+    # loop.close()
+    asyncio.run(main())
     print(f"taken: {time.time() - start}")
-    loop.close()
