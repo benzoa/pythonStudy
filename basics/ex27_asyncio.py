@@ -1,6 +1,9 @@
 import asyncio
 import time
+import random
 from concurrent.futures import ThreadPoolExecutor
+
+owner = None
 
 async def add(a, b):
     await asyncio.sleep(1.0)
@@ -37,6 +40,33 @@ async def main():
     futures = [asyncio.ensure_future(sleep(executor)) for i in range(100)]
     await asyncio.gather(*futures)
 
+async def coro1(lock):
+    global owner
+
+    await lock.acquire()
+    owner = "IAMMAN"
+    print(f"I am owner, {owner}")
+    await asyncio.sleep(random.random())
+    print(f"{owner} is man.")
+    lock.release()
+
+async def coro2(lock):
+    global owner
+
+    async with lock:
+        owner = "IAMWOMAN"
+        print(f"I am owner, {owner}")
+        await asyncio.sleep(random.random())
+        print(f"{owner} is woman.")
+
+
+async def switching():
+    lock = asyncio.Lock()
+
+    while True:
+        await asyncio.gather(coro1(lock), coro2(lock))
+        await asyncio.sleep(0.1)
+
 
 if __name__ == "__main__":
     start = time.time()
@@ -46,3 +76,5 @@ if __name__ == "__main__":
     # loop.close()
     asyncio.run(main())
     print(f"taken: {time.time() - start}")
+
+    asyncio.run(switching())
