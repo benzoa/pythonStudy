@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 
+plt.figure(figsize = (10, 3))
+plt.rc('font', family = 'Malgun Gothic')
 plt.title('legend')
 
 plt.plot([10, 20, 30, 40], color='skyblue', linestyle='--', label = 'asc')

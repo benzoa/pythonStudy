@@ -65,6 +65,8 @@ print("\nString Methods...................")
 # 1. split(sep=None, maxsplit=-1) : 문자열 분할해서 리스트 반환, 공백 문자로 기준으로 분할
 words = "ABC DEF AAA BBB CCC DDD EEE FFF"
 print("words.split(): {}".format(words.split()))
+print("words.split()[0]: {}".format(words.split()[0]))
+print("words.split()[1]: {}".format(words.split()[1]))
 
 text = "123:abc:!2$"
 text = text.split(":")      # :으로 분할

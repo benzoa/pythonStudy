@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 from enum import Enum
 
 Idx = Enum("Idx", "DATE LOC MEAN_TEMP MIN_TEMP MAX_TEMP", start=0)
+Graph = Enum("Graph", "PLOT HIST", start=0)
+graph_type = Graph.PLOT.value # None
+
 high_temp_max_val = -1000
 high_temp_max_date = ''
 high_temp_min_val = 1000
@@ -53,9 +56,16 @@ with open("./resource/seoul.csv", "r", encoding='cp949') as f:
     plt.rc('font', family = 'Malgun Gothic')
     plt.rcParams['axes.unicode_minus'] = False
     plt.title('Temperature data in Seoul from June 1, 2018 to July 31, 2020')
-    plt.plot(high, 'red')
-    plt.plot(low, 'skyblue')
+
+    if graph_type == Graph.PLOT.value:
+        plt.plot(high, 'red', label='High')
+        plt.plot(low, 'skyblue', label='Low')
+    else:
+        plt.hist(high, bins=800, color='red', label='High')
+        plt.hist(low, bins=800, color='skyblue', label='Low')
+    plt.legend()
     plt.show()
+    
     print(f"high_temp_max_val : {high_temp_max_val}, date : {high_temp_max_date}")
     print(f"high_temp_min_val : {high_temp_min_val}, date : {high_temp_min_date}")
     print(f"low_temp_max_val : {low_temp_max_val}, date : {low_temp_max_date}")
