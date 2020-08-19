@@ -17,6 +17,7 @@ low_temp_min_val = 0
 low_temp_min_date = ''
 high = []
 low = []
+x_scale = []
 
 with open("./resource/seoul.csv", "r", encoding='cp949') as f:
     data = csv.reader(f, delimiter=",")
@@ -50,8 +51,11 @@ with open("./resource/seoul.csv", "r", encoding='cp949') as f:
             low_temp_min_date = row[Idx.DATE.value]
 
         # print(row)
-    
+        day = row[Idx.DATE.value].split('-')[0][2:4] + row[Idx.DATE.value].split('-')[1] + row[Idx.DATE.value].split('-')[2]
+        x_scale.append(int(day))
 
+    
+    # print(x_scale)
     plt.figure(figsize = (15, 3))
     plt.rc('font', family = 'Malgun Gothic')
     plt.rcParams['axes.unicode_minus'] = False
@@ -63,7 +67,7 @@ with open("./resource/seoul.csv", "r", encoding='cp949') as f:
     else:
         plt.hist(high, bins=800, color='red', label='High')
         plt.hist(low, bins=800, color='skyblue', label='Low')
-    plt.legend()
+    plt.legend(loc = 4)
     plt.show()
     
     print(f"high_temp_max_val : {high_temp_max_val}, date : {high_temp_max_date}")
