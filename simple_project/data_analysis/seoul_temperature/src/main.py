@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 from enum import Enum
 
 Idx = Enum("Idx", "DATE LOC MEAN_TEMP MIN_TEMP MAX_TEMP", start=0)
-Graph = Enum("Graph", "PLOT HIST", start=0)
-graph_type = Graph.PLOT.value # None
+Graph = Enum("Graph", "PLOT HIST BOXPLOT", start=0)
+graph_type = Graph.BOXPLOT.value   # Graph.PLOT.value # None
 
 high_temp_max_val = -1000
 high_temp_max_date = ''
@@ -64,6 +64,8 @@ with open("./resource/seoul.csv", "r", encoding='cp949') as f:
     if graph_type == Graph.PLOT.value:
         plt.plot(high, 'red', label='High')
         plt.plot(low, 'skyblue', label='Low')
+    elif graph_type == Graph.BOXPLOT.value:
+        plt.boxplot([high, low])
     else:
         plt.hist(high, bins=800, color='red', label='High')
         plt.hist(low, bins=800, color='skyblue', label='Low')
