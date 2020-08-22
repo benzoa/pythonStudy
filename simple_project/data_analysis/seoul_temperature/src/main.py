@@ -4,7 +4,7 @@ from enum import Enum
 
 Idx = Enum("Idx", "DATE LOC MEAN_TEMP MIN_TEMP MAX_TEMP", start=0)
 Graph = Enum("Graph", "PLOT HIST BOXPLOT", start=0)
-graph_type = Graph.BOXPLOT.value   # Graph.PLOT.value # None
+graph_type = Graph.PLOT.value   # Graph.BOXPLOT.value   # None
 
 high_temp_max_val = -1000
 high_temp_max_date = ''
