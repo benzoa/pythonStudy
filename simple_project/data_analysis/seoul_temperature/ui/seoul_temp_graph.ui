@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1189</width>
-    <height>669</height>
+    <height>670</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -285,6 +285,19 @@
      <string>BOXPLOT</string>
     </property>
    </widget>
+  </widget>
+  <widget class="QPushButton" name="search_2">
+   <property name="geometry">
+    <rect>
+     <x>1080</x>
+     <y>617</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>그래프 저장</string>
+   </property>
   </widget>
  </widget>
  <resources/>
