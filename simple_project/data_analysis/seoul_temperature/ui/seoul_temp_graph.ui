@@ -31,7 +31,7 @@
    <property name="checkable">
     <bool>false</bool>
    </property>
-   <widget class="QRadioButton" name="day">
+   <widget class="QRadioButton" name="radio_day">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -47,7 +47,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QRadioButton" name="month">
+   <widget class="QRadioButton" name="radio_month">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -60,7 +60,7 @@
      <string>월</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="season">
+   <widget class="QRadioButton" name="radio_season">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -73,7 +73,7 @@
      <string>계절</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="year">
+   <widget class="QRadioButton" name="radio_year">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -99,7 +99,7 @@
    <property name="title">
     <string>자료형태</string>
    </property>
-   <widget class="QRadioButton" name="standard">
+   <widget class="QRadioButton" name="radio_standard">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -115,7 +115,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QRadioButton" name="deviation">
+   <widget class="QRadioButton" name="radio_deviation">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -129,7 +129,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="search">
+  <widget class="QPushButton" name="btn_search">
    <property name="geometry">
     <rect>
      <x>970</x>
@@ -180,7 +180,7 @@
      <string>시작 : </string>
     </property>
    </widget>
-   <widget class="QDateEdit" name="start">
+   <widget class="QDateEdit" name="de_start">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -206,7 +206,7 @@
      <string>종료 : </string>
     </property>
    </widget>
-   <widget class="QDateEdit" name="end">
+   <widget class="QDateEdit" name="de_end">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -243,7 +243,7 @@
    <property name="title">
     <string>그래프 타입</string>
    </property>
-   <widget class="QRadioButton" name="plot">
+   <widget class="QRadioButton" name="radio_plot">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -259,7 +259,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QRadioButton" name="hist">
+   <widget class="QRadioButton" name="radio_hist">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -272,7 +272,7 @@
      <string>HIST</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="boxplot">
+   <widget class="QRadioButton" name="radio_boxplot">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -286,7 +286,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="search_2">
+  <widget class="QPushButton" name="btn_save_graph">
    <property name="geometry">
     <rect>
      <x>1080</x>
