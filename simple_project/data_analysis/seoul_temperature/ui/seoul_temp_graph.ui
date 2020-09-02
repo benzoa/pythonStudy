@@ -229,7 +229,7 @@
      <height>581</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2"/>
+   <layout class="QVBoxLayout" name="verticalLayout"/>
   </widget>
   <widget class="QGroupBox" name="groupBox_4">
    <property name="geometry">
