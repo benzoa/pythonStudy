@@ -99,7 +99,7 @@
    <property name="title">
     <string>자료형태</string>
    </property>
-   <widget class="QRadioButton" name="radio_standard">
+   <widget class="QCheckBox" name="checkBox_standard">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -114,8 +114,11 @@
     <property name="checked">
      <bool>true</bool>
     </property>
+    <property name="autoExclusive">
+     <bool>true</bool>
+    </property>
    </widget>
-   <widget class="QRadioButton" name="radio_deviation">
+   <widget class="QCheckBox" name="checkBox_deviation">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -126,6 +129,15 @@
     </property>
     <property name="text">
      <string>편차</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>true</bool>
+    </property>
+    <property name="tristate">
+     <bool>false</bool>
     </property>
    </widget>
   </widget>

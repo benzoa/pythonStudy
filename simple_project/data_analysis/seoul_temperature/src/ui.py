@@ -32,8 +32,10 @@ class MyWindow(QMainWindow, form_class):
         self.radio_month.clicked.connect(self.radio_group_data_form)
         self.radio_year.clicked.connect(self.radio_group_data_form)
         self.radio_season.clicked.connect(self.radio_group_data_form)
-        self.radio_standard.clicked.connect(self.radio_group_data_type)
-        self.radio_deviation.clicked.connect(self.radio_group_data_type)
+
+        self.checkBox_standard.stateChanged.connect(self.checkbox_group_data_type)
+        self.checkBox_deviation.stateChanged.connect(self.checkbox_group_data_type)
+        self.checkBox_deviation.setCheckable(False)
 
         self.radio_plot.clicked.connect(self.radio_group_graph_type)
         self.radio_hist.clicked.connect(self.radio_group_graph_type)
@@ -46,17 +48,22 @@ class MyWindow(QMainWindow, form_class):
     def radio_group_data_form(self):
         if self.radio_day.isChecked():
             self.dataFormCd = 'F00501'
-        elif self.radio_month.isChecked():
-            self.dataFormCd = 'F00513'
-        elif self.radio_year.isChecked():
-            self.dataFormCd = 'F00514'
-        elif self.radio_season.isChecked():
-            self.dataFormCd = 'F00512'
+            self.checkBox_standard.setChecked(True)
+            self.checkBox_deviation.setCheckable(False)
+        else:
+            if self.radio_month.isChecked():
+                self.dataFormCd = 'F00513'
+            elif self.radio_year.isChecked():
+                self.dataFormCd = 'F00514'
+            elif self.radio_season.isChecked():
+                self.dataFormCd = 'F00512'
+            
+            self.checkBox_deviation.setCheckable(True)
 
-    def radio_group_data_type(self):
-        if self.radio_standard.isChecked():
+    def checkbox_group_data_type(self):
+        if self.checkBox_standard.isChecked():
             self.dataTypeCd = 'standard'
-        elif self.radio_deviation.isChecked():
+        else: 
             self.dataTypeCd = 'deviation'
 
     def radio_group_graph_type(self):
@@ -106,7 +113,7 @@ class MyWindow(QMainWindow, form_class):
 
         # # print("Before decode response :", data)
         # text = data.decode("cp949")
-        # # print("After decode response :", text)
+        # print("After decode response :", text)
 
         # savename = 'temperature_from_' + start_dt + '_to_' + end_dt + '.csv'
         # with open(savename, mode ="wb") as f:
