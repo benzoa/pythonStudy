@@ -24,6 +24,7 @@ class MyWindow(QMainWindow, form_class):
 
         self.cur_date = QDate.currentDate()
         self.de_start.setDate(self.cur_date.addMonths(-1))
+        self.de_start.setDate(self.de_start.date().addDays(1))
         self.de_end_minimum_date = self.cur_date.addDays(-1)
         self.de_end.setDate(self.de_end_minimum_date)
         self.de_end.setMaximumDate(self.de_end_minimum_date)
