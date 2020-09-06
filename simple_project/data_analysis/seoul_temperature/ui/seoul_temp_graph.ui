@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1189</width>
-    <height>670</height>
+    <height>666</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -179,50 +179,16 @@
    <property name="title">
     <string>기간</string>
    </property>
-   <widget class="QDateEdit" name="de_start">
+   <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>20</y>
-      <width>91</width>
-      <height>20</height>
+      <x>0</x>
+      <y>10</y>
+      <width>281</width>
+      <height>41</height>
      </rect>
     </property>
-    <property name="displayFormat">
-     <string>yyyy-MM-dd</string>
-    </property>
-    <property name="calendarPopup">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>20</y>
-      <width>16</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>~</string>
-    </property>
-   </widget>
-   <widget class="QDateEdit" name="de_end">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>20</y>
-      <width>91</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="displayFormat">
-     <string>yyyy-MM-dd</string>
-    </property>
-    <property name="calendarPopup">
-     <bool>true</bool>
-    </property>
+    <layout class="QGridLayout" name="gridLayout"/>
    </widget>
   </widget>
   <widget class="QWidget" name="verticalLayoutWidget">

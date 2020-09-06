@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
+from PyQt5.QtCore import Qt
 from PyQt5.QtCore import QDate
 from PyQt5.QtGui import *
 from urllib.request import urlopen
@@ -16,11 +17,16 @@ class MyWindow(QMainWindow, form_class):
         self.setupUi(self)
         self.dataFormCd = 'F00501'
         self.dataTypeCd = 'standard'
+        self.seasonCd = '0' # All
         
         self.setWindowTitle("Seoul Temperature Analyzer v0.1")
         self.fig = plt.Figure()
         self.canvas = FigureCanvas(self.fig)
         self.verticalLayout.addWidget(self.canvas)
+        
+        # period
+        self.de_start = QDateEdit(self)
+        self.de_end = QDateEdit(self)
 
         self.cur_date = QDate.currentDate()
         self.de_start.setDate(self.cur_date.addMonths(-1))
@@ -28,6 +34,51 @@ class MyWindow(QMainWindow, form_class):
         self.de_end_minimum_date = self.cur_date.addDays(-1)
         self.de_end.setDate(self.de_end_minimum_date)
         self.de_end.setMaximumDate(self.de_end_minimum_date)
+        
+        self.gridLayout.addWidget(self.de_start, 0, 0)
+        self.period = QLabel('~', self)
+        self.period.setAlignment(Qt.AlignCenter)
+        self.gridLayout.addWidget(self.period, 0, 1)
+        self.gridLayout.addWidget(self.de_end, 0, 2)
+
+        # comboBox
+        self.cb_start = QComboBox(self)
+        self.this_year = int(self.cur_date.toString("yyyy"))
+
+        items = [str(i) for i in range(int(self.this_year), int(self.this_year) - 20, -1)]
+        self.cb_start.addItems(items)
+        self.gridLayout.addWidget(self.cb_start, 0, 0)
+        self.cb_start.setCurrentIndex(10)
+        self.cb_start.setVisible(False)
+
+        self.cb_end = QComboBox(self)
+        items = [str(i) for i in range(int(self.this_year), int(self.this_year) - 20, -1)]
+        self.cb_end.addItems(items)
+        self.gridLayout.addWidget(self.cb_end, 0, 2)
+        self.cb_end.setVisible(False)
+
+        self.cb_month_start = QComboBox(self)
+        items = [str(i) for i in range(1, 13)]
+        self.cb_month_start.addItems(items)
+        self.gridLayout.addWidget(self.cb_month_start, 0, 3)
+        self.cb_month_start.setVisible(False)
+        
+        self.period_month = QLabel('~', self)
+        self.period_month.setAlignment(Qt.AlignCenter)
+        self.gridLayout.addWidget(self.period_month, 0, 4)
+        self.period_month.setVisible(False)
+
+        self.cb_month_end = QComboBox(self)
+        self.cb_month_end.addItems(items)
+        self.gridLayout.addWidget(self.cb_month_end, 0, 5)
+        self.cb_month_end.setCurrentIndex(11)
+        self.cb_month_end.setVisible(False)
+
+        self.season = QComboBox(self)
+        ssaw = ['All', 'Spring', 'Summer', 'Autumn', 'Winter']
+        self.season.addItems(ssaw)
+        self.gridLayout.addWidget(self.season, 0, 3)
+        self.season.setVisible(False)
 
         self.radio_day.clicked.connect(self.radio_group_data_form)
         self.radio_month.clicked.connect(self.radio_group_data_form)
@@ -44,19 +95,47 @@ class MyWindow(QMainWindow, form_class):
 
         self.btn_search.clicked.connect(self.btn_search_clicked)
         self.btn_save_graph.clicked.connect(self.btn_save_graph_clicked)
-
+        
+        self.start_day = self.de_start.date().toString("yyyyMMdd")
+        self.end_day = self.de_end.date().toString("yyyyMMdd")
 
     def radio_group_data_form(self):
+        self.de_start.setVisible(False)
+        self.period.setVisible(False)
+        self.de_end.setVisible(False)
+
+        self.cb_start.setVisible(False)
+        self.cb_end.setVisible(False)
+        self.cb_month_start.setVisible(False)
+        self.period_month.setVisible(False)
+        self.cb_month_end.setVisible(False)
+
+        self.season.setVisible(False)
+
         if self.radio_day.isChecked():
-            self.dataFormCd = 'F00501'
-            self.checkBox_standard.setChecked(True)
-            self.checkBox_deviation.setCheckable(False)
+            if self.de_start.isVisible() == False:                
+                self.de_start.setVisible(True)
+                self.period.setVisible(True)
+                self.de_end.setVisible(True)
+                self.dataFormCd = 'F00501'
+                self.checkBox_standard.setChecked(True)
+                self.checkBox_deviation.setCheckable(False)
         else:
             if self.radio_month.isChecked():
+                self.cb_start.setVisible(True)
+                self.cb_end.setVisible(True)
+                self.cb_month_start.setVisible(True)
+                self.period_month.setVisible(True)
+                self.cb_month_end.setVisible(True)
                 self.dataFormCd = 'F00513'
             elif self.radio_year.isChecked():
+                self.cb_start.setVisible(True)
+                self.cb_end.setVisible(True)
                 self.dataFormCd = 'F00514'
             elif self.radio_season.isChecked():
+                self.cb_start.setVisible(True)
+                self.cb_end.setVisible(True)
+                self.season.setVisible(True)
                 self.dataFormCd = 'F00512'
             
             self.checkBox_deviation.setCheckable(True)
@@ -78,32 +157,51 @@ class MyWindow(QMainWindow, form_class):
     def btn_search_clicked(self):
         start_date = self.de_start.date()
         end_date = self.de_end.date()
-        fmt = "yyyyMM"
-        start_dt = start_date.toString(fmt)
-        end_dt = end_date.toString(fmt)
+        if self.dataFormCd == 'F00501':
+            dt_fmt = "yyyyMMdd"
+        elif self.dataFormCd == 'F00513':
+            dt_fmt = "yyyyMM"
+            self.start_year = start_date.toString("yyyy")
+            self.start_month = start_date.toString("MM")
+            self.end_year = end_date.toString("yyyy")
+            self.end_month = end_date.toString("MM")
+        elif self.dataFormCd == 'F00514' or self.dataFormCd == 'F00512':
+            dt_fmt = "yyyy"
+
+        self.start_dt = start_date.toString(dt_fmt)
+        self.end_dt = end_date.toString(dt_fmt)
 
         values = {
             'fileType': 'csv',
             'pgmNo': '70', 'menuNo': '432', 'serviceSe': 'F00101', 'stdrMg': '99999',
-            'startDt': start_dt,
-            'endDt': end_dt,
+            'startDt': '', 'endDt': '',
             'taElement': 'MIN', 'taElement': 'AVG', 'taElement': 'MAX', 'stnGroupSns': '',
             'selectType': '1', 'mddlClssCd': 'SFC01',
-            'dataFormCd': self.dataFormCd,
-            'dataTypeCd': self.dataTypeCd,
-            'startDay': '20000701',
-            'startYear': '2010',
-            'endDay': '20200821',
-            'endYear': '2020',
-            'startMonth': '01',
-            'endMonth': '12',
-            'sesnCd': '0',
-            'txtStnNm': '서울',
-            'stnId': '108',
-            'areaId':'', 
-            'gFontSize':''
+            'dataFormCd': '', 'dataTypeCd': '',
+            'startDay': '', 'startYear': '', 'endDay': '', 'endYear': '', 'startMonth': '', 'endMonth': '',
+            'sesnCd': '', 'txtStnNm': '서울', 'stnId': '108', 'areaId':'', 'gFontSize':''
             }
         
+        if self.dataFormCd == 'F00501':
+            self.start_day = self.start_dt
+            self.end_day = self.end_dt
+        elif self.dataFormCd == 'F00513' or self.dataFormCd == 'F00514' or self.dataFormCd == 'F00512':
+            values['startYear'] = self.start_year
+            values['startMonth'] = self.start_month
+            values['endYear'] = self.end_year
+            values['endMonth'] = self.end_month
+
+            if self.dataFormCd == 'F00512':
+                values['sesnCd'] = self.seasonCd
+
+        # Common values
+        values['dataFormCd'] = self.dataFormCd
+        values['dataTypeCd'] = self.dataTypeCd
+        values['startDt'] = self.start_dt
+        values['endDt'] = self.end_dt
+        values['startDay'] = self.start_day
+        values['endDay'] = self.end_day
+
         params = urlencode(values)
         print(f"After urlencode : {params}")
         # API = "https://data.kma.go.kr/stcs/grnd/downloadGrndTaList.do"
