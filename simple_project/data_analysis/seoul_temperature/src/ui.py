@@ -17,7 +17,6 @@ class MyWindow(QMainWindow, form_class):
         self.setupUi(self)
         self.dataFormCd = 'F00501'
         self.dataTypeCd = 'standard'
-        self.seasonCd = '0' # All
         
         self.setWindowTitle("Seoul Temperature Analyzer v0.1")
         self.fig = plt.Figure()
@@ -34,7 +33,7 @@ class MyWindow(QMainWindow, form_class):
         self.de_end_minimum_date = self.cur_date.addDays(-1)
         self.de_end.setDate(self.de_end_minimum_date)
         self.de_end.setMaximumDate(self.de_end_minimum_date)
-        
+
         self.gridLayout.addWidget(self.de_start, 0, 0)
         self.period = QLabel('~', self)
         self.period.setAlignment(Qt.AlignCenter)
@@ -50,19 +49,25 @@ class MyWindow(QMainWindow, form_class):
         self.gridLayout.addWidget(self.cb_start, 0, 0)
         self.cb_start.setCurrentIndex(10)
         self.cb_start.setVisible(False)
+        self.start_year = self.cb_start.currentText()
+        self.cb_start.currentIndexChanged.connect(self.update_start_year)
 
         self.cb_end = QComboBox(self)
         items = [str(i) for i in range(int(self.this_year), int(self.this_year) - 20, -1)]
         self.cb_end.addItems(items)
         self.gridLayout.addWidget(self.cb_end, 0, 2)
         self.cb_end.setVisible(False)
+        self.end_year = self.cb_end.currentText()
+        self.cb_end.currentIndexChanged.connect(self.update_end_year)
 
         self.cb_month_start = QComboBox(self)
         items = [str(i) for i in range(1, 13)]
         self.cb_month_start.addItems(items)
         self.gridLayout.addWidget(self.cb_month_start, 0, 3)
         self.cb_month_start.setVisible(False)
-        
+        self.start_month = self.cb_month_start.currentText()
+        self.cb_month_start.currentIndexChanged.connect(self.update_start_month)
+
         self.period_month = QLabel('~', self)
         self.period_month.setAlignment(Qt.AlignCenter)
         self.gridLayout.addWidget(self.period_month, 0, 4)
@@ -73,12 +78,16 @@ class MyWindow(QMainWindow, form_class):
         self.gridLayout.addWidget(self.cb_month_end, 0, 5)
         self.cb_month_end.setCurrentIndex(11)
         self.cb_month_end.setVisible(False)
+        self.start_month = self.cb_month_end.currentText()
+        self.cb_month_end.currentIndexChanged.connect(self.update_end_month)
 
         self.season = QComboBox(self)
         ssaw = ['All', 'Spring', 'Summer', 'Autumn', 'Winter']
         self.season.addItems(ssaw)
         self.gridLayout.addWidget(self.season, 0, 3)
         self.season.setVisible(False)
+        self.seasonCd = '0' # All
+        self.season.currentIndexChanged.connect(self.update_season)
 
         self.radio_day.clicked.connect(self.radio_group_data_form)
         self.radio_month.clicked.connect(self.radio_group_data_form)
@@ -146,6 +155,30 @@ class MyWindow(QMainWindow, form_class):
         else: 
             self.dataTypeCd = 'deviation'
 
+    def update_start_year(self):
+        self.start_year = self.cb_start.currentText()
+
+    def update_end_year(self):
+        self.end_year = self.cb_end.currentText()
+    
+    def update_start_month(self):
+        self.start_month = self.cb_month_start.currentText()
+    
+    def update_end_month(self):
+        self.end_month = self.cb_month_end.currentText()
+    
+    def update_season(self):
+        if self.season.currentText() == 'All':
+            self.seasonCd = 0
+        elif self.season.currentText() == 'Spring':
+            self.seasonCd = 'DB004001'
+        elif self.season.currentText() == 'Summer':
+            self.seasonCd = 'DB004002'
+        elif self.seanson.currentText() == 'Autumn':
+            self.seasonCd = 'DB004003'
+        else:
+            self.seasonCd = 'DB004004'
+
     def radio_group_graph_type(self):
         if self.radio_plot.isChecked():
             self.graphType = 'plot'
@@ -172,10 +205,11 @@ class MyWindow(QMainWindow, form_class):
         self.end_dt = end_date.toString(dt_fmt)
 
         values = {
-            'fileType': 'csv',
+            'fileType': '',
             'pgmNo': '70', 'menuNo': '432', 'serviceSe': 'F00101', 'stdrMg': '99999',
             'startDt': '', 'endDt': '',
-            'taElement': 'MIN', 'taElement': 'AVG', 'taElement': 'MAX', 'stnGroupSns': '',
+            # 'taElement': 'MIN', 'taElement': 'AVG', 
+            'taElement': 'MAX', 'stnGroupSns': '',
             'selectType': '1', 'mddlClssCd': 'SFC01',
             'dataFormCd': '', 'dataTypeCd': '',
             'startDay': '', 'startYear': '', 'endDay': '', 'endYear': '', 'startMonth': '', 'endMonth': '',
@@ -185,34 +219,33 @@ class MyWindow(QMainWindow, form_class):
         if self.dataFormCd == 'F00501':
             self.start_day = self.start_dt
             self.end_day = self.end_dt
-        elif self.dataFormCd == 'F00513' or self.dataFormCd == 'F00514' or self.dataFormCd == 'F00512':
-            values['startYear'] = self.start_year
-            values['startMonth'] = self.start_month
-            values['endYear'] = self.end_year
-            values['endMonth'] = self.end_month
-
-            if self.dataFormCd == 'F00512':
-                values['sesnCd'] = self.seasonCd
-
+        # elif self.dataFormCd == 'F00513' or self.dataFormCd == 'F00514' or self.dataFormCd == 'F00512':
+        
         # Common values
-        values['dataFormCd'] = self.dataFormCd
-        values['dataTypeCd'] = self.dataTypeCd
         values['startDt'] = self.start_dt
         values['endDt'] = self.end_dt
+        values['dataFormCd'] = self.dataFormCd
+        values['dataTypeCd'] = self.dataTypeCd
         values['startDay'] = self.start_day
+        values['startYear'] = self.start_year
         values['endDay'] = self.end_day
+        values['endYear'] = self.end_year
+        values['startMonth'] = self.start_month
+        values['endMonth'] = self.end_month
+        
+        values['sesnCd'] = self.seasonCd
 
         params = urlencode(values)
         print(f"After urlencode : {params}")
-        # API = "https://data.kma.go.kr/stcs/grnd/downloadGrndTaList.do"
-        # url = API + "?" + params
+        API = "https://data.kma.go.kr/stcs/grnd/downloadGrndTaList.do"
+        url = API + "?" + params
 
-        # response = urlopen(url)
-        # data = response.read()
+        response = urlopen(url)
+        data = response.read()
 
         # # print("Before decode response :", data)
-        # text = data.decode("cp949")
-        # print("After decode response :", text)
+        text = data.decode("cp949")
+        print("After decode response :", text)
 
         # savename = 'temperature_from_' + start_dt + '_to_' + end_dt + '.csv'
         # with open(savename, mode ="wb") as f:
