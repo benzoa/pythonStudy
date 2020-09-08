@@ -30,9 +30,12 @@ class MyWindow(QMainWindow, form_class):
         self.cur_date = QDate.currentDate()
         self.de_start.setDate(self.cur_date.addMonths(-1))
         self.de_start.setDate(self.de_start.date().addDays(1))
+        self.de_start.setCalendarPopup(True)
+
         self.de_end_minimum_date = self.cur_date.addDays(-1)
         self.de_end.setDate(self.de_end_minimum_date)
         self.de_end.setMaximumDate(self.de_end_minimum_date)
+        self.de_end.setCalendarPopup(True)
 
         self.gridLayout.addWidget(self.de_start, 0, 0)
         self.period = QLabel('~', self)
@@ -61,7 +64,7 @@ class MyWindow(QMainWindow, form_class):
         self.cb_end.currentIndexChanged.connect(self.update_end_year)
 
         self.cb_month_start = QComboBox(self)
-        items = [str(i) for i in range(1, 13)]
+        items = ["{:02d}".format(i) for i in range(1, 13)]
         self.cb_month_start.addItems(items)
         self.gridLayout.addWidget(self.cb_month_start, 0, 3)
         self.cb_month_start.setVisible(False)
@@ -78,7 +81,7 @@ class MyWindow(QMainWindow, form_class):
         self.gridLayout.addWidget(self.cb_month_end, 0, 5)
         self.cb_month_end.setCurrentIndex(11)
         self.cb_month_end.setVisible(False)
-        self.start_month = self.cb_month_end.currentText()
+        self.end_month = self.cb_month_end.currentText()
         self.cb_month_end.currentIndexChanged.connect(self.update_end_month)
 
         self.season = QComboBox(self)
@@ -140,12 +143,12 @@ class MyWindow(QMainWindow, form_class):
             elif self.radio_year.isChecked():
                 self.cb_start.setVisible(True)
                 self.cb_end.setVisible(True)
-                self.dataFormCd = 'F00514'
+                self.dataFormCd = 'F00512'
             elif self.radio_season.isChecked():
                 self.cb_start.setVisible(True)
                 self.cb_end.setVisible(True)
                 self.season.setVisible(True)
-                self.dataFormCd = 'F00512'
+                self.dataFormCd = 'F00514'
             
             self.checkBox_deviation.setCheckable(True)
 
@@ -174,7 +177,7 @@ class MyWindow(QMainWindow, form_class):
             self.seasonCd = 'DB004001'
         elif self.season.currentText() == 'Summer':
             self.seasonCd = 'DB004002'
-        elif self.seanson.currentText() == 'Autumn':
+        elif self.season.currentText() == 'Autumn':
             self.seasonCd = 'DB004003'
         else:
             self.seasonCd = 'DB004004'
@@ -192,17 +195,20 @@ class MyWindow(QMainWindow, form_class):
         end_date = self.de_end.date()
         if self.dataFormCd == 'F00501':
             dt_fmt = "yyyyMMdd"
-        elif self.dataFormCd == 'F00513':
-            dt_fmt = "yyyyMM"
-            self.start_year = start_date.toString("yyyy")
-            self.start_month = start_date.toString("MM")
-            self.end_year = end_date.toString("yyyy")
-            self.end_month = end_date.toString("MM")
-        elif self.dataFormCd == 'F00514' or self.dataFormCd == 'F00512':
-            dt_fmt = "yyyy"
+            self.start_dt = start_date.toString(dt_fmt)
+            self.end_dt = end_date.toString(dt_fmt)
+        else:
+            if self.dataFormCd == 'F00513':
+                dt_fmt = "yyyyMM"
+                self.start_year = self.cb_start.currentText()
+                self.start_month = self.cb_month_start.currentText()
+                self.end_year = self.cb_end.currentText()
+                self.end_month = self.cb_month_end.currentText()
+            elif self.dataFormCd == 'F00514' or self.dataFormCd == 'F00512':
+                dt_fmt = "yyyy"
 
-        self.start_dt = start_date.toString(dt_fmt)
-        self.end_dt = end_date.toString(dt_fmt)
+            self.start_dt = self.cb_start.currentText()
+            self.end_dt = self.cb_end.currentText()
 
         values = {
             'fileType': '',
@@ -219,7 +225,6 @@ class MyWindow(QMainWindow, form_class):
         if self.dataFormCd == 'F00501':
             self.start_day = self.start_dt
             self.end_day = self.end_dt
-        # elif self.dataFormCd == 'F00513' or self.dataFormCd == 'F00514' or self.dataFormCd == 'F00512':
         
         # Common values
         values['startDt'] = self.start_dt
