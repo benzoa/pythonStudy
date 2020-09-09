@@ -22,6 +22,13 @@ class MyWindow(QMainWindow, form_class):
         self.fig = plt.Figure()
         self.canvas = FigureCanvas(self.fig)
         self.verticalLayout.addWidget(self.canvas)
+        # ax = self.fig.add_subplot(111)
+        # x = range(0, 100)
+        # y = [v*v for v in x]
+        # ax.plot(x, y)
+        # ax.legend(loc='upper right')
+        # ax.grid()
+        # self.canvas.draw()
         
         # period
         self.de_start = QDateEdit(self)
@@ -251,6 +258,9 @@ class MyWindow(QMainWindow, form_class):
         # # print("Before decode response :", data)
         text = data.decode("cp949")
         print("After decode response :", text)
+        # data = text.split("\\r\\n")
+        # for row in data:
+        #     print(row[0])
 
         # savename = 'temperature_from_' + start_dt + '_to_' + end_dt + '.csv'
         # with open(savename, mode ="wb") as f:
