@@ -1,4 +1,5 @@
 import sys
+from enum import Enum
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 from PyQt5.QtCore import Qt
@@ -10,6 +11,8 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
 form_class = uic.loadUiType("ui/seoul_temp_graph.ui")[0]
+
+Idx = Enum("Idx", "DATE LOC MEAN_TEMP MIN_TEMP MAX_TEMP", start=0)
 
 class MyWindow(QMainWindow, form_class):
     def __init__(self):
@@ -257,10 +260,44 @@ class MyWindow(QMainWindow, form_class):
 
         # # print("Before decode response :", data)
         text = data.decode("cp949")
-        print("After decode response :", text)
-        # data = text.split("\\r\\n")
-        # for row in data:
-        #     print(row[0])
+        # print("After decode response :", text)
+        data = text.split("\r\n")
+        # print(len(data))
+
+        # remove header
+        del data[:8]
+        del data[-2:]
+
+        i = 0
+        # make 2dList
+        tmp = []
+        for row in data:
+            add = row.split(',')
+            tmp.append(add)
+
+            print(f"{i}: {row}")
+            i += 1
+        
+        # print(f"tmp: {tmp}")
+        high = []
+        low = []
+
+        for row in tmp:
+            if row[Idx.MAX_TEMP.value] != '':
+                row[Idx.MAX_TEMP.value] = float(row[Idx.MAX_TEMP.value])
+                high.append(row[Idx.MAX_TEMP.value])
+        
+            if row[Idx.MIN_TEMP.value] == '':
+                continue
+        
+            row[Idx.MIN_TEMP.value] = float(row[Idx.MIN_TEMP.value])
+            low.append(row[Idx.MIN_TEMP.value])
+        
+        print(f"high: {high}")
+        print(f"low: {low}")
+
+
+
 
         # savename = 'temperature_from_' + start_dt + '_to_' + end_dt + '.csv'
         # with open(savename, mode ="wb") as f:
