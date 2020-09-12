@@ -25,13 +25,6 @@ class MyWindow(QMainWindow, form_class):
         self.fig = plt.Figure()
         self.canvas = FigureCanvas(self.fig)
         self.verticalLayout.addWidget(self.canvas)
-        # ax = self.fig.add_subplot(111)
-        # x = range(0, 100)
-        # y = [v*v for v in x]
-        # ax.plot(x, y)
-        # ax.legend(loc='upper right')
-        # ax.grid()
-        # self.canvas.draw()
         
         # period
         self.de_start = QDateEdit(self)
@@ -296,7 +289,11 @@ class MyWindow(QMainWindow, form_class):
         print(f"high: {high}")
         print(f"low: {low}")
 
-
+        ax = self.fig.add_subplot(111)
+        ax.plot(high, 'red', label='High')
+        ax.plot(low, 'skyblue', label='Low')
+        ax.legend(loc = 4)
+        self.canvas.draw()
 
 
         # savename = 'temperature_from_' + start_dt + '_to_' + end_dt + '.csv'
