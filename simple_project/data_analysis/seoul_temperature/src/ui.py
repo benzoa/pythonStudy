@@ -292,7 +292,7 @@ class MyWindow(QMainWindow, form_class):
         ax = self.fig.add_subplot(111)
         ax.plot(high, 'red', label='High')
         ax.plot(low, 'skyblue', label='Low')
-        ax.legend(loc = 4)
+        ax.legend(loc = "best")
         self.canvas.draw()
 
 
