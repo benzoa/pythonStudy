@@ -114,6 +114,8 @@ class MyWindow(QMainWindow, form_class):
         self.start_day = self.de_start.date().toString("yyyyMMdd")
         self.end_day = self.de_end.date().toString("yyyyMMdd")
 
+        self.btn_search_clicked()
+
     def radio_group_data_form(self):
         self.de_start.setVisible(False)
         self.period.setVisible(False)
