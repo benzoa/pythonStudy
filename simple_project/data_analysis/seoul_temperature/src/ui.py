@@ -288,12 +288,13 @@ class MyWindow(QMainWindow, form_class):
             row[Idx.MIN_TEMP.value] = float(row[Idx.MIN_TEMP.value])
             low.append(row[Idx.MIN_TEMP.value])
         
-        print(f"high: {high}")
-        print(f"low: {low}")
+        # print(f"high: {high}")
+        # print(f"low: {low}")
 
         ax = self.fig.add_subplot(111)
         ax.plot(high, 'red', label='High')
         ax.plot(low, 'skyblue', label='Low')
+        ax.grid(True)
         ax.legend(loc = "best")
         self.canvas.draw()
 
