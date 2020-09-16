@@ -8,6 +8,7 @@ from PyQt5.QtGui import *
 from urllib.request import urlopen
 from urllib.parse import urlparse, urlencode
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
 form_class = uic.loadUiType("ui/seoul_temp_graph.ui")[0]
@@ -20,11 +21,16 @@ class MyWindow(QMainWindow, form_class):
         self.setupUi(self)
         self.dataFormCd = 'F00501'
         self.dataTypeCd = 'standard'
-        
         self.setWindowTitle("Seoul Temperature Analyzer v0.1")
+        path = 'C:\\WINDOWS\\Fonts\\malgunsl.ttf'
+        font_name = fm.FontProperties(fname=path, size=50).get_name()
+        plt.rc('font', family=font_name)
+        plt.rcParams['axes.unicode_minus'] = False
+
         self.fig = plt.Figure()
         self.canvas = FigureCanvas(self.fig)
         self.verticalLayout.addWidget(self.canvas)
+        self.ax = None
         
         # period
         self.de_start = QDateEdit(self)
@@ -194,14 +200,32 @@ class MyWindow(QMainWindow, form_class):
             self.graphType = 'hist'
         elif self.radio_boxplot.isChecked():
             self.graphType = 'boxplot'
-
+    
     def btn_search_clicked(self):
+        if self.ax != None:
+            self.ax.remove()
+        self.btn_search_processing()
+
+    def btn_search_processing(self):
+        self.ax = self.fig.add_subplot(111)
         start_date = self.de_start.date()
         end_date = self.de_end.date()
+
+        start_year = start_date.toString("yyyy")
+        end_year = end_date.toString("yyyy")
+        title_fmt = ""
+        common_title = "Temperature data in Seoul "
+
         if self.dataFormCd == 'F00501':
             dt_fmt = "yyyyMMdd"
             self.start_dt = start_date.toString(dt_fmt)
             self.end_dt = end_date.toString(dt_fmt)
+
+            start_month = start_date.toString("MMMM")
+            start_day = start_date.toString("d")
+            end_month = end_date.toString("MMMM")
+            end_day = end_date.toString("d")
+            title_fmt = '{}from {} {}, {} to {} {}, {}'.format(common_title, start_month, start_day, start_year, end_month, end_day, end_year)
         else:
             if self.dataFormCd == 'F00513':
                 dt_fmt = "yyyyMM"
@@ -209,8 +233,13 @@ class MyWindow(QMainWindow, form_class):
                 self.start_month = self.cb_month_start.currentText()
                 self.end_year = self.cb_end.currentText()
                 self.end_month = self.cb_month_end.currentText()
+                title_fmt = '{}from {}, {} to {}, {}'.format(common_title, self.start_month, self.start_year, self.end_month, self.end_year)
             elif self.dataFormCd == 'F00514' or self.dataFormCd == 'F00512':
                 dt_fmt = "yyyy"
+                if self.dataFormCd == 'F00514':
+                    title_fmt = '{}{} Season'.format(common_title, self.season.currentText())
+                else:
+                    title_fmt = '{}from {} to {}'.format(common_title, start_year, end_year)
 
             self.start_dt = self.cb_start.currentText()
             self.end_dt = self.cb_end.currentText()
@@ -277,6 +306,7 @@ class MyWindow(QMainWindow, form_class):
         mean = []
         high = []
         low = []
+        mean.clear()
 
         for row in tmp:
             if row[Idx.MEAN_TEMP.value] != '':
@@ -296,12 +326,16 @@ class MyWindow(QMainWindow, form_class):
         # print(f"high: {high}")
         # print(f"low: {low}")
 
-        ax = self.fig.add_subplot(111)
-        ax.plot(high, 'red', label='High')
-        ax.plot(mean, 'green', label='mean')
-        ax.plot(low, 'blue', label='Low')
-        # ax.grid(True)
-        ax.legend(loc = "best")
+        # print(title_fmt)
+        
+        self.ax.set_title(title_fmt)
+        self.ax.plot(high, 'red', label='High')
+        self.ax.plot(mean, 'green', label='mean')
+        self.ax.plot(low, 'blue', label='Low')
+        # self.ax.grid(True)
+        self.ax.set_xlabel('period')
+        self.ax.set_ylabel('temperature')
+        self.ax.legend(loc = "best")
         self.canvas.draw()
 
 
