@@ -274,10 +274,15 @@ class MyWindow(QMainWindow, form_class):
             i += 1
         
         # print(f"tmp: {tmp}")
+        mean = []
         high = []
         low = []
 
         for row in tmp:
+            if row[Idx.MEAN_TEMP.value] != '':
+                row[Idx.MEAN_TEMP.value] = float(row[Idx.MEAN_TEMP.value])
+                mean.append(row[Idx.MEAN_TEMP.value])
+
             if row[Idx.MAX_TEMP.value] != '':
                 row[Idx.MAX_TEMP.value] = float(row[Idx.MAX_TEMP.value])
                 high.append(row[Idx.MAX_TEMP.value])
@@ -293,8 +298,9 @@ class MyWindow(QMainWindow, form_class):
 
         ax = self.fig.add_subplot(111)
         ax.plot(high, 'red', label='High')
-        ax.plot(low, 'skyblue', label='Low')
-        ax.grid(True)
+        ax.plot(mean, 'green', label='mean')
+        ax.plot(low, 'blue', label='Low')
+        # ax.grid(True)
         ax.legend(loc = "best")
         self.canvas.draw()
 
