@@ -237,9 +237,9 @@ class MyWindow(QMainWindow, form_class):
             elif self.dataFormCd == 'F00514' or self.dataFormCd == 'F00512':
                 dt_fmt = "yyyy"
                 if self.dataFormCd == 'F00514':
-                    title_fmt = '{}{} Season'.format(common_title, self.season.currentText())
+                    title_fmt = '{}in {}'.format(common_title, self.season.currentText())
                 else:
-                    title_fmt = '{}from {} to {}'.format(common_title, start_year, end_year)
+                    title_fmt = '{}from {} to {}'.format(common_title, self.cb_start.currentText(), end_year)
 
             self.start_dt = self.cb_start.currentText()
             self.end_dt = self.cb_end.currentText()
