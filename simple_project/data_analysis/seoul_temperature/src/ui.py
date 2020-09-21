@@ -27,8 +27,10 @@ class MyWindow(QMainWindow, form_class):
         path = 'C:\\WINDOWS\\Fonts\\malgunsl.ttf'
         font_name = fm.FontProperties(fname=path, size=50).get_name()
         plt.rc('font', family=font_name)
-        plt.rcParams['axes.unicode_minus'] = False
         
+        # minus
+        plt.rcParams['axes.unicode_minus'] = False
+
         # graph
         self.fig = plt.Figure()
         self.canvas = FigureCanvas(self.fig)
