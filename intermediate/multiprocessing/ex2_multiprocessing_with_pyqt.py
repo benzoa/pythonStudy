@@ -7,7 +7,7 @@ import datetime
 import time
 
 
-def producer(q):
+def producer(q: Queue):
     proc = mp.current_process()
     print(proc.name)
 
@@ -43,7 +43,6 @@ class MyWindow(QMainWindow):
         self.consumer.poped.connect(self.print_data)
         self.consumer.start()
 
-    # 시그널에 의해서 호출되는 매서드
     @pyqtSlot(str)
     def print_data(self, data):
         self.statusBar().showMessage(data)

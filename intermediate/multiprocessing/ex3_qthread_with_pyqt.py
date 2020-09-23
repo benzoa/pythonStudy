@@ -1,16 +1,15 @@
 import sys
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
-from PyQt5 import QtCore
  
  
 class TestThread(QThread):
-    threadEvent = QtCore.pyqtSignal(int)
+    threadEvent = pyqtSignal(int)
  
     def __init__(self, parent=None):
         super().__init__()
         self.n = 0
-        self.main = parent
+        # self.main = parent
         self.isRun = False
  
     def run(self):
@@ -42,14 +41,12 @@ class TestGUI(QDialog):
         self.th = TestThread(self)
         self.th.threadEvent.connect(self.threadEventHandler)
  
-    @pyqtSlot()
     def threadStart(self):
         if not self.th.isRun:
             print('Main : Started Thread')
             self.th.isRun = True
             self.th.start()
  
-    @pyqtSlot()
     def threadStop(self):
         if self.th.isRun:
             print('Main : Stoped Thread')
