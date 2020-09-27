@@ -1,6 +1,6 @@
 import sys
-from PyQt5.QtCore import *
-from PyQt5.QtWidgets import *
+from PyQt5.QtCore import QThread, pyqtSignal, pyqtSlot
+from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QVBoxLayout
  
  
 class TestThread(QThread):

@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import uic
-from PyQt5.QtGui import *
+# from PyQt5.QtGui import *
 
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm

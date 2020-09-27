@@ -1,6 +1,6 @@
 import sys
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtCore import QThread, pyqtSlot, pyqtSignal
 from multiprocessing import Process, Queue
 import multiprocessing as mp
 import datetime
