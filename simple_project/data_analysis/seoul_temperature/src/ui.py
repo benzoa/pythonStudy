@@ -10,6 +10,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
 form_class = uic.loadUiType("ui/seoul_temp_graph.ui")[0]
 
+
 class MyWindow(QMainWindow, form_class):
     def __init__(self):
         super().__init__()
@@ -17,7 +18,7 @@ class MyWindow(QMainWindow, form_class):
         self.init_ui()
         init_widget(self)
         btn_search_clicked(self)
-        
+
     def init_ui(self):
         self.dataFormCd = 'F00501'
         self.dataTypeCd = 'standard'
@@ -27,7 +28,7 @@ class MyWindow(QMainWindow, form_class):
         path = 'C:\\WINDOWS\\Fonts\\malgunsl.ttf'
         font_name = fm.FontProperties(fname=path, size=50).get_name()
         plt.rc('font', family=font_name)
-        
+
         # minus
         plt.rcParams['axes.unicode_minus'] = False
 

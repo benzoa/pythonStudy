@@ -2,22 +2,22 @@ import csv
 import matplotlib.pyplot as plt
 from enum import Enum
 
-Idx = Enum("Idx", "DATE LOC MEAN_TEMP MIN_TEMP MAX_TEMP", start=0)
-Graph = Enum("Graph", "PLOT HIST BOXPLOT", start=0)
-graph_type = Graph.PLOT.value   # Graph.BOXPLOT.value   # None
+IDX = Enum("IDX", "DATE LOC MEAN_TEMP MIN_TEMP MAX_TEMP", start=0)
+GRAPH = Enum("GRAPH", "PLOT HIST BOXPLOT", start=0)
+GRAPH_TYPE = GRAPH.PLOT.value   # GRAPH.BOXPLOT.value   # None
 
-high_temp_max_val = -1000
-high_temp_max_date = ''
-high_temp_min_val = 1000
-high_temp_min_date = ''
+HIGH_TEMP_MAX_VAL = -1000
+HIGH_TEMP_MAX_DATE = ''
+HIGH_TEMP_MIN_VAL = 1000
+HIGH_TEMP_MIN_DATE = ''
 
-low_temp_max_val = 0
-low_temp_max_date = ''
-low_temp_min_val = 0
-low_temp_min_date = ''
-high = []
-low = []
-x_scale = []
+LOW_TEMP_MAX_VAL = 0
+LOW_TEMP_MAX_DATE = ''
+LOW_TEMP_MIN_VAL = 0
+LOW_TEMP_MIN_DATE = ''
+HIGH = []
+LOW = []
+X_SCALE = []
 
 with open("./resource/seoul.csv", "r", encoding='cp949') as f:
     data = csv.reader(f, delimiter=",")
@@ -25,54 +25,60 @@ with open("./resource/seoul.csv", "r", encoding='cp949') as f:
     print(header)
 
     for row in data:
-        if row[Idx.MAX_TEMP.value] != '':
-            row[Idx.MAX_TEMP.value] = float(row[Idx.MAX_TEMP.value])
-            high.append(row[Idx.MAX_TEMP.value])
-        
-            if row[Idx.MAX_TEMP.value] > high_temp_max_val:
-                high_temp_max_val = row[Idx.MAX_TEMP.value]
-                high_temp_max_date = row[Idx.DATE.value]
-            
-            if row[Idx.MAX_TEMP.value] < high_temp_min_val:
-                high_temp_min_val = row[Idx.MAX_TEMP.value]
-                high_temp_min_date = row[Idx.DATE.value]
-        
-        if row[Idx.MIN_TEMP.value] == '':
-            continue
-        
-        row[Idx.MIN_TEMP.value] = float(row[Idx.MIN_TEMP.value])
-        low.append(row[Idx.MIN_TEMP.value])
+        if row[IDX.MAX_TEMP.value] != '':
+            row[IDX.MAX_TEMP.value] = float(row[IDX.MAX_TEMP.value])
+            HIGH.append(row[IDX.MAX_TEMP.value])
 
-        if row[Idx.MIN_TEMP.value] > low_temp_max_val:
-            low_temp_max_val = row[Idx.MIN_TEMP.value]
-            low_temp_max_date = row[Idx.DATE.value]
-        elif row[Idx.MIN_TEMP.value] < low_temp_min_val:
-            low_temp_min_val = row[Idx.MIN_TEMP.value]
-            low_temp_min_date = row[Idx.DATE.value]
+            if row[IDX.MAX_TEMP.value] > HIGH_TEMP_MAX_VAL:
+                HIGH_TEMP_MAX_VAL = row[IDX.MAX_TEMP.value]
+
+            HIGH_TEMP_MAX_DATE = row[IDX.DATE.value]
+
+            if row[IDX.MAX_TEMP.value] < HIGH_TEMP_MIN_VAL:
+                HIGH_TEMP_MIN_VAL = row[IDX.MAX_TEMP.value]
+                HIGH_TEMP_MIN_DATE = row[IDX.DATE.value]
+
+        if row[IDX.MIN_TEMP.value] == '':
+            continue
+
+        row[IDX.MIN_TEMP.value] = float(row[IDX.MIN_TEMP.value])
+        LOW.append(row[IDX.MIN_TEMP.value])
+
+        if row[IDX.MIN_TEMP.value] > LOW_TEMP_MAX_VAL:
+            LOW_TEMP_MAX_VAL = row[IDX.MIN_TEMP.value]
+            LOW_TEMP_MAX_DATE = row[IDX.DATE.value]
+        elif row[IDX.MIN_TEMP.value] < LOW_TEMP_MIN_VAL:
+            LOW_TEMP_MIN_VAL = row[IDX.MIN_TEMP.value]
+            LOW_TEMP_MIN_DATE = row[IDX.DATE.value]
 
         # print(row)
-        day = row[Idx.DATE.value].split('-')[0][2:4] + row[Idx.DATE.value].split('-')[1] + row[Idx.DATE.value].split('-')[2]
-        x_scale.append(int(day))
+        day = row[IDX.DATE.value].split('-')[0][2:4]
+        day += row[IDX.DATE.value].split('-')[1]
+        day += row[IDX.DATE.value].split('-')[2]
 
-    
-    # print(x_scale)
-    plt.figure(figsize = (15, 3))
-    plt.rc('font', family = 'Malgun Gothic')
+        X_SCALE.append(int(day))
+
+    # print(X_SCALE)
+    plt.figure(figsize=(15, 3))
+    plt.rc('font', family='Malgun Gothic')
     plt.rcParams['axes.unicode_minus'] = False
     plt.title('Temperature data in Seoul from June 1, 2018 to July 31, 2020')
 
-    if graph_type == Graph.PLOT.value:
-        plt.plot(high, 'red', label='High')
-        plt.plot(low, 'skyblue', label='Low')
-    elif graph_type == Graph.BOXPLOT.value:
-        plt.boxplot([high, low])
+    if GRAPH_TYPE == GRAPH.PLOT.value:
+        plt.plot(HIGH, 'red', label='HIGH')
+        plt.plot(LOW, 'skyblue', label='LOW')
+    elif GRAPH_TYPE == GRAPH.BOXPLOT.value:
+        plt.boxplot([HIGH, LOW])
     else:
-        plt.hist(high, bins=800, color='red', label='High')
-        plt.hist(low, bins=800, color='skyblue', label='Low')
-    plt.legend(loc = 4)
+        plt.hist(HIGH, bins=800, color='red', label='HIGH')
+        plt.hist(LOW, bins=800, color='skyblue', label='LOW')
+
+    plt.legend(loc=4)
     plt.show()
-    
-    print(f"high_temp_max_val : {high_temp_max_val}, date : {high_temp_max_date}")
-    print(f"high_temp_min_val : {high_temp_min_val}, date : {high_temp_min_date}")
-    print(f"low_temp_max_val : {low_temp_max_val}, date : {low_temp_max_date}")
-    print(f"low_temp_min_val : {low_temp_min_val}, date : {low_temp_min_date}")
+
+    print("HIGH_TEMP")
+    print(f"MAX_VAL: {HIGH_TEMP_MAX_VAL}, date : {HIGH_TEMP_MAX_DATE}")
+    print(f"MIN_VAL: {HIGH_TEMP_MIN_VAL}, date : {HIGH_TEMP_MIN_DATE}")
+    print("LOW_TEMP")
+    print(f"MAX_VAL: {LOW_TEMP_MAX_VAL}, date : {LOW_TEMP_MAX_DATE}")
+    print(f"MIN_VAL: {LOW_TEMP_MIN_VAL}, date : {LOW_TEMP_MIN_DATE}")

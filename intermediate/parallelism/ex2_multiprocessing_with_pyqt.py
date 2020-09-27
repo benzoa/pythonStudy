@@ -7,14 +7,14 @@ import datetime
 import time
 
 
-def producer(q: Queue):
+def producer(queue: Queue):
     proc = mp.current_process()
     print(proc.name)
 
     while True:
         now = datetime.datetime.now()
         data = str(now)
-        q.put(data)
+        queue.put(data)
         time.sleep(1)
 
 
@@ -22,24 +22,24 @@ class Consumer(QThread):
     # make signal
     poped = pyqtSignal(str)
 
-    def __init__(self, q):
+    def __init__(self, queue):
         super().__init__()
-        self.q = q
+        self.queue = queue
 
     def run(self):
         while True:
-            if not self.q.empty():
-                data = q.get()
+            if not self.queue.empty():
+                data = self.queue.get()
                 self.poped.emit(data)
 
 
 class MyWindow(QMainWindow):
-    def __init__(self, q):
+    def __init__(self, queue):
         super().__init__()
         self.setGeometry(200, 200, 300, 200)
 
         # thread for data consumer
-        self.consumer = Consumer(q)
+        self.consumer = Consumer(queue)
         self.consumer.poped.connect(self.print_data)
         self.consumer.start()
 
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     q = Queue()
 
     # producer process
-    p = Process(name="producer", target=producer, args=(q, ), daemon=True)
+    p = Process(name="Producer", target=producer, args=(q, ), daemon=True)
     p.start()
 
     # Main process

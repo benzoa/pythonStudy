@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import random
 
 result = []
-for i  in range(13):
+for i in range(13):
     result.append(random.randint(1, 1000))
 
 print(sorted(result))
