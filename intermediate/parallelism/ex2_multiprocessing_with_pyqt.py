@@ -1,14 +1,13 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtCore import QThread, pyqtSlot, pyqtSignal
-from multiprocessing import Process, Queue
-import multiprocessing as mp
+from multiprocessing import Process, Queue, current_process
 import datetime
 import time
 
 
 def producer(queue: Queue):
-    proc = mp.current_process()
+    proc = current_process()
     print(proc.name)
 
     while True:
