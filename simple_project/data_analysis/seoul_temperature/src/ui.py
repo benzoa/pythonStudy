@@ -1,11 +1,10 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import uic
-# from PyQt5.QtGui import *
+from view.widget import init_widget, btn_search_clicked
 
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
-from view.widget import init_widget, btn_search_clicked
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
 form_class = uic.loadUiType("ui/seoul_temp_graph.ui")[0]
