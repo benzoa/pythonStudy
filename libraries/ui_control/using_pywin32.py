@@ -43,6 +43,7 @@ print('Width:', GetSystemMetrics(0))
 print('Height:', GetSystemMetrics(1))
 
 monitor_info = GetMonitorInfo(MonitorFromPoint((0, 0)))
+print(f"monitor_info:{monitor_info}")
 work_area = monitor_info.get("Work")
 monitor_area = monitor_info.get("Monitor")
 # (x position, y position, height, width)
