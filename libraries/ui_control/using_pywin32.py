@@ -46,17 +46,31 @@ monitor_info = GetMonitorInfo(MonitorFromPoint((0, 0)))
 print(f"monitor_info:{monitor_info}")
 work_area = monitor_info.get("Work")
 monitor_area = monitor_info.get("Monitor")
-# (x position, y position, height, width)
-# if the taskbar is on the left(top), there is a value in x(y).
+
 print(f"x: {work_area[0]}, y: {work_area[1]}, height: {work_area[2]}, width: {work_area[3]}")
 print(f"work area: {work_area[2]}x{work_area[3]}")
 
 # screen resolution
 print("monitor_area:", monitor_area)
 
-# if the taskbar is hidden, the height is 0.
-# Depending on the position of the taskbar, height my change.
-print(f"taskbar height: {monitor_area[3] - work_area[3]}")
+# if the taskbar is hidden, the x is 0!
+for i in range(4):
+    x = monitor_area[i] - work_area[i]
+
+    if x > 0:
+        if i == 2:
+            print(f"taskbar is in Right, {x}")
+            break
+        elif i == 3:
+            print(f"taskbar is in Bottom, {x}")
+            break
+    elif x < 0:
+        if i == 0:
+            print(f"taskbar is in Left, {x}")
+            break
+        elif i == 1:
+            print(f"taskbar is in Top, {x}")
+            break
 
 # get pixcel color as hex
 color = win32gui.GetPixel(win32gui.GetDC(win32gui.GetActiveWindow()), 500, 500)
@@ -77,7 +91,7 @@ print(rgbint2rgbtuple(color))
 
 # get local time
 # https://docs.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-getlocaltime
-# year, month, dayOfWeek, day, hour, minute, second, milliseconds 
+# year, month, dayOfWeek, day, hour, minute, second, milliseconds
 print(GetLocalTime())
 
 # get system time
