@@ -1,4 +1,4 @@
-import win32api 
+import win32api
 from win32api import GetSystemMetrics, GetLocalTime, GetSystemTime, GetComputerName, GetUserName
 from win32api import GetMonitorInfo, MonitorFromPoint
 import win32con

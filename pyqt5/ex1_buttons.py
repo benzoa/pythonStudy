@@ -4,8 +4,9 @@ from PyQt5 import uic
 
 form_class = uic.loadUiType("ui/buttons.ui")[0]
 
+
 class WindowClass(QMainWindow, form_class):
-    def __init__(self) :
+    def __init__(self):
         super().__init__()
         self.setupUi(self)
 
@@ -26,18 +27,16 @@ class WindowClass(QMainWindow, form_class):
 
         self.push_btn1.toggle()
 
-
     def push_btn2_func(self):
         if self.push_btn2.isChecked():
             self.push_btn2.setStyleSheet("color: blue;"
-                                     "border-style: solid;"
-                                     "border-width: 2px;"
-                                     "border-color: #FA8072;"
-                                     "background-color: #7FFFD4;"
-                                     "border-radius: 3px")
+                                    "border-style: solid;"
+                                    "border-width: 2px;"
+                                    "border-color: #FA8072;"
+                                    "background-color: #7FFFD4;"
+                                    "border-radius: 3px")
         else:
             self.push_btn2.setStyleSheet("")
-
 
     def radio_group_box_func(self):
         if self.radio_btn1.isChecked(): print("radio1 checked")
@@ -45,7 +44,7 @@ class WindowClass(QMainWindow, form_class):
         elif self.radio_btn3.isChecked(): print("radio3 checked")
 
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     myWindow = WindowClass()
