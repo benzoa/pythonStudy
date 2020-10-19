@@ -35,7 +35,7 @@ class WindowClass(QWidget, form_class):
     def check_box_func(self):
         if self.check_box1.isChecked():
             print("checkbox1 checked")
-        
+
         if self.check_box2.isChecked():
             self.check_box2.setText("Checked")
         else:
