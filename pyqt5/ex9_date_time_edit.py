@@ -1,12 +1,13 @@
 import sys
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtCore import QDateTime, QDate, QTime
 from PyQt5 import uic
 
 form_class = uic.loadUiType("ui/time_date_edit.ui")[0]
 
-class WindowClass(QMainWindow, form_class):
-    def __init__(self) :
+
+class WindowClass(QWidget, form_class):
+    def __init__(self):
         super().__init__()
         self.setupUi(self)
 
@@ -47,7 +48,7 @@ class WindowClass(QMainWindow, form_class):
 
         self.disp_time = self.date_time_edit.time()
         self.fmt = "AP hh:mm:ss"
-        self.date_time_time_lb.setText( self.disp_time.toString(self.fmt))
+        self.date_time_time_lb.setText(self.disp_time.toString(self.fmt))
 
     def dte_set_date_time(self):
         self.date_and_time = self.date_time_date_time_le.text()
@@ -83,7 +84,7 @@ class WindowClass(QMainWindow, form_class):
         self.date_time_edit.setMinimumDateTime(self.cur_minimum_date_time)
 
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     myWindow = WindowClass()

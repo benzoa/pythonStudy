@@ -1,13 +1,13 @@
 import sys
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5 import uic
 from PyQt5.QtCore import QTimer
 
 form_class = uic.loadUiType("ui/progress_bar.ui")[0]
 
-class WindowClass(QMainWindow, form_class):
-    def __init__(self) :
+
+class WindowClass(QWidget, form_class):
+    def __init__(self):
         super().__init__()
         self.setupUi(self)
 
@@ -52,7 +52,7 @@ class WindowClass(QMainWindow, form_class):
         self.progress_bar.setValue(self.progress_bar.value() + 20)
 
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     myWindow = WindowClass()

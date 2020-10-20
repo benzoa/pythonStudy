@@ -1,12 +1,13 @@
 import sys
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtCore import QDate
 from PyQt5 import uic
 
 form_class = uic.loadUiType("ui/date_edit.ui")[0]
 
-class WindowClass(QMainWindow, form_class):
-    def __init__(self) :
+
+class WindowClass(QWidget, form_class):
+    def __init__(self):
         super().__init__()
         self.setupUi(self)
 
@@ -55,7 +56,7 @@ class WindowClass(QMainWindow, form_class):
         self.date_edit.setMinimumDate(self.cur_minimum_date)
 
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     myWindow = WindowClass()

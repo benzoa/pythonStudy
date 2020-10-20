@@ -1,12 +1,13 @@
 import sys
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtCore import QTime
 from PyQt5 import uic
 
 form_class = uic.loadUiType("ui/time_edit.ui")[0]
 
-class WindowClass(QMainWindow, form_class):
-    def __init__(self) :
+
+class WindowClass(QWidget, form_class):
+    def __init__(self):
         super().__init__()
         self.setupUi(self)
 
@@ -19,7 +20,7 @@ class WindowClass(QMainWindow, form_class):
         self.time_info.clicked.connect(self.te_info_disp)
         self.time_set_time.clicked.connect(self.te_set_time)
         self.time_change_format.clicked.connect(self.te_change_format)
- 
+
     def te_changed(self):
         print(self.time_edit.time())
 
@@ -38,7 +39,7 @@ class WindowClass(QMainWindow, form_class):
         self.time_edit.setDisplayFormat(self.new_format)
 
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     myWindow = WindowClass()

@@ -1,13 +1,13 @@
 import sys
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QTableWidgetItem, QWidget, QApplication, QStyleFactory
 from PyQt5 import uic
 from PyQt5.QtCore import Qt
 
 form_class = uic.loadUiType("ui/table.ui")[0]
 
-class WindowClass(QMainWindow, form_class):
-    def __init__(self) :
+
+class WindowClass(QWidget, form_class):
+    def __init__(self):
         super().__init__()
         self.setupUi(self)
 
@@ -19,7 +19,7 @@ class WindowClass(QMainWindow, form_class):
             header_item = self.tableWidget.horizontalHeaderItem(i)
             header_item.setBackground(Qt.lightGray)
 
-        #self.tableWidget.cellChanged.connect(self.cellChanged)
+        # self.tableWidget.cellChanged.connect(self.cellChanged)
         self.tableWidget.currentCellChanged.connect(self.curCellChanged)
         self.tableWidget.cellClicked.connect(self.cellClicked)
         self.tableWidget.cellDoubleClicked.connect(self.cellDoubleClicked)
@@ -72,7 +72,7 @@ class WindowClass(QMainWindow, form_class):
         self.addTableItem(tbInsertRow, "Kim", "Rust", "Boxing")
 
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setStyle(QStyleFactory.create('Fusion'))
 

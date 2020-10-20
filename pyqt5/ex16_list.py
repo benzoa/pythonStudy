@@ -1,12 +1,12 @@
 import sys
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5 import uic
 
 form_class = uic.loadUiType("ui/list.ui")[0]
 
-class WindowClass(QMainWindow, form_class):
-    def __init__(self) :
+
+class WindowClass(QWidget, form_class):
+    def __init__(self):
         super().__init__()
         self.setupUi(self)
 
@@ -14,7 +14,7 @@ class WindowClass(QMainWindow, form_class):
         self.listWidget.itemClicked.connect(self.chkItemClicked)
         self.listWidget.itemDoubleClicked.connect(self.chkItemDoubleClicked)
         self.listWidget.currentItemChanged.connect(self.chkCurrentItemChanged)
-        
+
         self.btn_addItem.clicked.connect(self.addListWidget)
         self.btn_insertItem.clicked.connect(self.insertListWidget)
 
@@ -57,7 +57,7 @@ class WindowClass(QMainWindow, form_class):
         self.listWidget.clear()
 
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     myWindow = WindowClass()
