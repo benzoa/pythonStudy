@@ -1,19 +1,20 @@
 import sys
 import os
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
+from PyQt5.QtWidgets import QWidget, QApplication
+from PyQt5.QtCore import QTimer, QDateTime
 from PyQt5.QtGui import QIcon
 
 scriptdir, script = os.path.split(__file__)
 editor_act = False
 
-if editor_act == True:
+if editor_act is True:
     from hello import Ui_hello
 else:
     from .hello import Ui_hello
 
+
 class WindowClass(QWidget):
-    def __init__(self) :
+    def __init__(self):
         super().__init__()
         self.ui = Ui_hello()
         self.ui.setupUi(self)
@@ -34,7 +35,7 @@ class WindowClass(QWidget):
         self.ui.date_time_lb.setText(self.dateTimeVar.toString(self.fmt))
 
 
-if editor_act == True:
+if editor_act is True:
     if __name__ == '__main__':
         pass
 else:
