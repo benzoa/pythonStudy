@@ -13,4 +13,3 @@ def create_user(user):
     if response.status_code != 201:
         raise Exception("Failed to create a user.")
     return response.json()
-

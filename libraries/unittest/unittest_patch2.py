@@ -12,12 +12,11 @@ class TestUserManger(TestCase):
         response.json.return_value = {"id": 99}
 
         user = user_manager.create_user(
-            {"name": "Test User", "email": "user@test.com",}
+            {"name": "Test User", "email": "user@test.com", }
         )
 
         self.assertEqual(user["id"], 99)
         mock_post.assert_called_once_with(
             "https://jsonplaceholder.typicode.com/users",
-            data={"name": "Test User", "email": "user@test.com",},
+            data={"name": "Test User", "email": "user@test.com", },
         )
-		

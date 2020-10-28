@@ -32,6 +32,7 @@ class TestStringMethods(unittest.TestCase):
         """ This test should be skipped. """
         pass
 
+
 if __name__ == '__main__':
     reportFoler = "ReportTest"
     unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output=reportFoler))
