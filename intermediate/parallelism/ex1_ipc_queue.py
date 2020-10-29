@@ -3,18 +3,20 @@ import time
 import ctypes
 
 
-STD_OUTPUT_HANDLE  = -11
+STD_OUTPUT_HANDLE = -11
 
-PRODUCER    = 1
-CONSUMER    = 2
-TX          = 1
-RX          = 2
+PRODUCER = 1
+CONSUMER = 2
+TX = 1
+RX = 2
 
 std_out_handle = ctypes.windll.kernel32.GetStdHandle(STD_OUTPUT_HANDLE)
- 
+
+
 def set_color(color, handle=std_out_handle):
     bool = ctypes.windll.kernel32.SetConsoleTextAttribute(handle, color)
     return bool
+
 
 def c_print(type, txrx, data):
     fmt = ''
@@ -78,6 +80,6 @@ if __name__ == "__main__":
     p2 = Process(target=consumer, args=(queue,))
     p1.start()
     p2.start()
-    
+
     queue.close()
     queue.join_thread()
