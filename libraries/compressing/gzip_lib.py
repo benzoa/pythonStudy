@@ -26,4 +26,4 @@ print("len(gunzipped_data):", len(gunzipped_data))
 if long_text == gunzipped_data:
     print("same")
 else:
-    print("different")  
+    print("different")

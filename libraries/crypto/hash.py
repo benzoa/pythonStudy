@@ -1,7 +1,8 @@
 # https://www.dlitz.net/software/pycrypto/
 # pip install pycryto
-
+import hashlib
 from Crypto.Hash import MD5, SHA512
+
 hash_md5 = MD5.new()    # MD5
 hash_md5.update(b'hamegg')
 print("hash_md5.hexdigest():", hash_md5.hexdigest())
@@ -18,8 +19,6 @@ print("hash_md5.hexdigest():", hash_md5.hexdigest())
 
 hash_md5.update(b'egg')
 print("hash_md5.hexdigest():", hash_md5.hexdigest())
-
-import hashlib
 
 string = 'a'
 encoded_string = string.encode()

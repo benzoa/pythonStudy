@@ -1,4 +1,4 @@
-from calcpkg import *
+from calcpkg import add, mul, triangle_area, rectangle_area
 
 print(add(10, 20))
 print(mul(10, 20))
