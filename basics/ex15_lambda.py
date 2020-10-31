@@ -35,3 +35,20 @@ print("filter: {}".format(list(filter(exp, values))))
 from functools import reduce
 exp = lambda x, y: x + y
 print("reduce: {}".format(reduce(exp, values)))
+
+# bit masking
+hVal = 0xF0  # 240, 0b1111_0000
+print(f"orignal hex: {hVal:0x}, bin: {hVal:0b}")
+
+BitMask = lambda bit: 1 << bit
+SetBit = lambda val, bit: val | BitMask(bit)
+GetBit = lambda val, bit: (val & BitMask(bit)) >> bit
+ClearBit = lambda val, bit: val & ~BitMask(bit)
+ToggleBit = lambda val, bit: val ^ BitMask(bit)
+HighByte = lambda val: (val >> 4) & 0xff
+LowByte = lambda val: (val << 4) & 0xff
+print(f"SetBit: {SetBit(hVal, 1):0b}, {SetBit(hVal, 0):0b}")
+print(f"GetBit: {GetBit(hVal, 4):0b}, {GetBit(hVal, 2):0b}")
+print(f"ClearBit: {ClearBit(hVal, 4):0b}, {ClearBit(hVal, 6):0b}")
+print(f"ToggleBit: {ToggleBit(hVal, 5):0b}, {ToggleBit(hVal, 2):0b}")
+print(f"HighByte: {HighByte(hVal):0b}, {LowByte(hVal):0b}")
